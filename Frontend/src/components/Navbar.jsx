@@ -40,9 +40,11 @@ const Navbar = () => {
       </ul>
 
       <div>
+      <Link to="/auth">
         <button className='text-white whitespace-nowrap text-md border-2 px-3 py-[6px] rounded-xl border-neutral-600 hover:border-neutral-400 '>
           <ShinyText text="Sign In" disabled={false} speed={2} className='custom-class' />
         </button>
+        </Link>
       </div>
     </div>
   )
