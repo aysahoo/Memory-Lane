@@ -9,9 +9,9 @@ const Loader = () => {
         to={100}
         separator=","
         direction="up"
-        duration={5}
-        className="count-up-text font-sans font-semibold text-9xl"
-        delay={3}
+        duration={2}
+        className="count-up-text font-sans font-semibold text-9xl bg-gradient-to-r from-[#c7c7c7] to-[#3273a2] text-transparent bg-clip-text"
+        delay={0}
         />
     </div>
   )

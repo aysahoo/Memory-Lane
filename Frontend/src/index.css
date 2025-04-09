@@ -15,4 +15,15 @@
     font-family: "Raleway",sans-serif;
   }
   
+  /* Initial state: The content is transparent */
+.fade-in {
+  opacity: 0;
+  transition: opacity 2s ease-in-out; /* Slow fade-in effect */
+}
+
+/* After fade-in has been triggered, the content will gradually fade in */
+.fade-in.fade-in-active {
+  opacity: 1;
+}
+
   
