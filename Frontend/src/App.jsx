@@ -16,24 +16,18 @@ const App = () => {
   const AuthPage = lazy(() => import('./pages/AuthPage'));
   
   useEffect(() => {
-    // Simulate a loading delay of 4 seconds
     const loadingTimer = setTimeout(() => {
       setIsLoading(false);
-      
-      // Small delay before starting the fade-in (optional)
       const fadeTimer = setTimeout(() => {
         setFadeIn(true);
-      }, 200); // Short delay between loading completion and fade-in
-      
+      }, 200);
       return () => clearTimeout(fadeTimer);
     }, 4000);
-    
-    // Clean up the timer when the component unmounts
     return () => clearTimeout(loadingTimer);
   }, []);
   
   if (isLoading) {
-    return <Loader />; // Show loader while loading
+    return <Loader />;
   }
   
   return (
