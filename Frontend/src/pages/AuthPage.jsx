@@ -31,6 +31,8 @@ export default function AuthPage() {
   const [error, setError] = useState("");
   const [success, setSuccess] = useState("");
 
+  
+
   // Validation
   const isValidEmail = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
   const isValidPassword = password.length >= 8;
@@ -110,14 +112,12 @@ export default function AuthPage() {
             <h1 className="text-5xl font-medium pb-2 bg-gradient-to-r from-[#459ddc] via-[#dadada] to-[#459ddc] text-transparent bg-clip-text">
                 Memory Lane
             </h1>
-            
-
             {error && <div className="w-full px-4 py-3 rounded-lg bg-red-900/50 border border-red-500 text-red-100">{error}</div>}
             {success && <div className="w-full px-4 py-3 rounded-lg bg-green-900/50 border border-green-500 text-green-100">{success}</div>}
 
             <div className="w-full space-y-6">
               <Button 
-                className="w-full bg-neutral-700 hover:bg-neutral-400 text-white gap-4"
+                className="w-full bg-neutral-800 hover:bg-neutral-700 text-white gap-4"
                 onClick={handleGoogleAuth}
                 disabled={isProcessing}
               >
@@ -126,9 +126,9 @@ export default function AuthPage() {
               </Button>
 
               <div className="relative my-2">
-                <div className="absolute inset-0 flex items-center"><div className="w-full border-t border-gray-700"></div></div>
+                <div className="absolute inset-0 flex items-center"></div>
                 <div className="relative flex justify-center text-sm">
-                  <span className="px-2 text-gray-500 bg-black">Or continue with</span>
+                  <span className="px-2 text-gray-500">Or continue with</span>
                 </div>
               </div>
 
@@ -139,7 +139,7 @@ export default function AuthPage() {
                     placeholder="Your Name"
                     value={name}
                     onChange={(e) => setName(e.target.value)}
-                    className="w-full p-4 bg-black border border-gray-700 rounded-full text-white focus:outline-none focus:ring-2 focus:ring-[#459ddc]"
+                    className="w-full p-4 bg-transparent border border-gray-700 rounded-full text-white focus:outline-none focus:ring-2 focus:ring-[#459ddc]"
                   />
                 )}
                 <input
@@ -147,14 +147,14 @@ export default function AuthPage() {
                   placeholder="Email address"
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
-                  className={`w-full p-4 bg-black border ${!isValidEmail && email ? "border-red-500" : "border-gray-700"} rounded-full text-white focus:outline-none focus:ring-2 focus:ring-[#459ddc]`}
+                  className={`w-full p-4 bg-transparent border ${!isValidEmail && email ? "border-red-500" : "border-gray-700"} rounded-full text-white focus:outline-none focus:ring-2 focus:ring-[#459ddc]`}
                 />
                 <input
                   type="password"
                   placeholder="Password"
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
-                  className={`w-full p-4 bg-black border ${!isValidPassword && password ? "border-red-500" : "border-gray-700"} rounded-full text-white focus:outline-none focus:ring-2 focus:ring-[#459ddc]`}
+                  className={`w-full p-4 bg-transparent border ${!isValidPassword && password ? "border-red-500" : "border-gray-700"} rounded-full text-white focus:outline-none focus:ring-2 focus:ring-[#459ddc]`}
                 />
                 {!isLogin && (
                   <input
@@ -162,7 +162,7 @@ export default function AuthPage() {
                     placeholder="Confirm Password"
                     value={confirmPassword}
                     onChange={(e) => setConfirmPassword(e.target.value)}
-                    className={`w-full p-4 bg-black border ${!isConfirmMatch && confirmPassword ? "border-red-500" : "border-gray-700"} rounded-full text-white focus:outline-none focus:ring-2 focus:ring-[#459ddc]`}
+                    className={`w-full p-4 bg-transparent border ${!isConfirmMatch && confirmPassword ? "border-red-500" : "border-gray-700"} rounded-full text-white focus:outline-none focus:ring-2 focus:ring-[#459ddc]`}
                   />
                 )}
                 <Button 
@@ -176,14 +176,14 @@ export default function AuthPage() {
               </form>
             </div>
             <div className>
-            <p className="text-lg text-gray-500 pb-6">
+            <p className="text-lg text-gray-300 pb-6">
               {isLogin ? "Don't have an account?" : "Already have an account?"}{" "}
               <span className="text-[#459ddc] cursor-pointer hover:underline" onClick={() => setIsLogin(!isLogin)}>
-                {isLogin ? "Sign up" : "Login"} here.
+                {isLogin ? "Sign up" : "Log in"} here.
               </span>
             </p>
 
-            <div className="text-md text-gray-400 space-x-4">
+            <div className="text-md text-gray-300 space-x-4">
               <a href="#" className="hover:underline">Terms of Use</a>
               <span>|</span>
               <a href="#" className="hover:underline">Privacy Policy</a>
