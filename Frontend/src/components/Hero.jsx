@@ -5,10 +5,11 @@ import GradientText from '../components/GradientText'
 import ShinyText from '../components/ShinyText'
 
 const Hero = () => {
+  
   return (
     <>
     <div className='min-h-[600px]'>
-    <img className='relative min-w-full object-cover scale-110' src={assets.hero_bg} alt="hero" />
+    <img className='relative min-w-full object-cover scale-110 '  src={assets.hero_bg} alt="hero" />
       <div className='absolute top-[10%] left-[50%] translate-x-[-50%] translate-y-[-50%]'>
         <Navbar />
       </div>
