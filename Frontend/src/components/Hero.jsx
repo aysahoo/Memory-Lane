@@ -30,7 +30,7 @@ const Hero = () => {
       </div>
       <div className='w-38 text-center text-neutral-600 bg-neutral-900 border-2  border-neutral-600 hover:border-neutral-400 
                       rounded-lg py-3 absolute top-[77%] left-1/2 translate-x-[-50%] translate-y-[-190%] '>
-        <a className='px-3' href="">
+        <a className='px-3' href="/chat">
           <ShinyText text="Get Started → " disabled={false} speed={2} className='custom-class' />
         </a>
       </div>

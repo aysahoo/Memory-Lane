@@ -4,6 +4,7 @@ import Homepage from './pages/Homepage'
 import Team from './pages/Team'
 import AuthPage from './pages/AuthPage'
 import Space from './components/Space'
+import Chat from './pages/Chat'
 
 
 
@@ -15,6 +16,7 @@ const App = () => {
         <Route path='/team' element={<Team />} />
         <Route path='/auth' element={<AuthPage/>} />
         <Route path='/space' element={<Space />} />
+        <Route path='/chat' element={<Chat />} />
       </Routes>
     </div>
   )
