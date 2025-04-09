@@ -5,7 +5,7 @@ import GradientText from './GradientText'
 const Features = () => {
   return (
     <>
-      <div className='absolute text-8xl top-[110%] left-[50%] translate-x-[-50%]'>
+      <div className='text-8xl pb-32'>
         <GradientText
           colors={["#e3e3e3", "#459ddc", "#459ddc", "#459ddc"]}
           animationSpeed={3}
@@ -15,7 +15,7 @@ const Features = () => {
         Features
         </GradientText>
       </div>
-      <div className='flex justify-around pl-14 pr-14'>
+      <div className='flex justify-around px-20'>
       <div>
       <SpotlightCard className="h-80 w-80" spotlightColor="rgba(69, 157, 220, 0.2)">
       <div className="text-white rounded-2xl shadow-lg p-4 flex flex-col justify-between">
