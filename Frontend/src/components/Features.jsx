@@ -29,6 +29,7 @@ const Features = () => {
         </div>
       </SpotlightCard>
       </div>
+      
       <div>
       <SpotlightCard className="h-80 w-80" spotlightColor="rgba(69, 157, 220, 0.2)">
       <div className="text-white rounded-2xl shadow-lg p-4 flex flex-col justify-between">
