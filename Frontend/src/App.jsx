@@ -6,6 +6,7 @@ import AuthPage from './pages/AuthPage'
 import Space from './components/Space'
 import Chat from './pages/Chat'
 import Loader from './pages/Loader'
+import CustomCursor from './components/CustomCursor'
 
 
 
@@ -29,7 +30,8 @@ const App = () => {
   }
   
   return (
-    <div className={`overflow-x-hidden transition-opacity duration-1000 ease-in-out ${fadeIn ? 'opacity-100' : 'opacity-0'}`}>
+    <div className={`cursor-none overflow-x-hidden transition-opacity duration-1000 ease-in-out ${fadeIn ? 'opacity-100' : 'opacity-0'}`}>
+      <CustomCursor/>
       <Routes>
         <Route path='/' element={<Homepage />} />
         <Route path='/team' element={<Team />} />
