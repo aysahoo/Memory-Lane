@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, lazy } from 'react'
 import { Route, Routes } from 'react-router-dom'
 import Homepage from './pages/Homepage'
 import Team from './pages/Team'
@@ -7,9 +7,13 @@ import Space from './components/Space'
 import Chat from './pages/Chat'
 import Loader from './pages/Loader'
 
+
+
 const App = () => {
   const [isLoading, setIsLoading] = useState(true);
   const [fadeIn, setFadeIn] = useState(false);
+
+  const AuthPage = lazy(() => import('./pages/AuthPage'));
   
   useEffect(() => {
     // Simulate a loading delay of 4 seconds
