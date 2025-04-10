@@ -39,6 +39,12 @@
 * {
   cursor: none !important;
 }
+@media (pointer: coarse) {
+  .custom-cursor {
+    display: none;
+  }
+}
+
 
 .custom-cursor {
   position: fixed;
