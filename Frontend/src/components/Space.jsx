@@ -36,17 +36,17 @@ const Space = ({ onClose }) => {
       imageSrc={assets.audio_bg}
       altText={audio.name}
       captionText={audio.name}
-      containerHeight="160px"
-      containerWidth="160px"
-      imageHeight="160px"
-      imageWidth="160px"
+      containerHeight="140px"
+      containerWidth="140px"
+      imageHeight="140px"
+      imageWidth="140px"
       rotateAmplitude={5}
       scaleOnHover={1}
       showMobileWarning={false}
       showTooltip={false}
       displayOverlayContent={true}
       overlayContent={
-        <div className="text-white max-w-[160px] text-center p-3 flex flex-col items-center space-y-16">
+        <div className="text-white max-w-[140px] text-center p-3 flex flex-col items-center space-y-10">
           <div className="flex items-center justify-between w-full px-1">
             <p className="text-[9px] text-black font-semibold truncate">{audio.name}</p>
             {isDeletable && (
@@ -66,7 +66,7 @@ const Space = ({ onClose }) => {
 
   return (
     <div className="fixed inset-0 bg-black/40 backdrop-blur-sm z-50 flex items-center justify-center px-2 sm:px-4">
-      <div className="w-full max-w-6xl bg-white/10 border border-white/20 backdrop-blur-xl p-6 sm:p-8 rounded-3xl text-white shadow-2xl relative overflow-y-auto max-h-[90vh]">
+      <div className="w-full max-w-6xl bg-white/10 border border-white/20 backdrop-blur-xl px-2 p-6 sm:p-8 rounded-3xl text-white shadow-2xl relative overflow-y-auto max-h-[90vh]">
         <button onClick={onClose} className="absolute top-4 right-4 text-white hover:text-neutral-300">
           <X className="w-6 h-6" />
         </button>
@@ -109,9 +109,10 @@ const Space = ({ onClose }) => {
         {uploadedAudios.length > 0 && (
           <>
             <h3 className="mt-10 text-lg font-semibold text-center">Uploaded Audios</h3>
-            <div className="mt-4 grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4 justify-center">
+            <div className="mt-4 grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-6 sm:gap-y-10 w-fit sm:w-full mx-auto">
               {uploadedAudios.map(audio => renderAudioCard(audio))}
             </div>
+
           </>
         )}
       </div>
