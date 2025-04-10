@@ -9,13 +9,13 @@ const Hero = () => {
   return (
     <div className="relative w-full h-screen">
       <img
-        className="absolute inset-0 w-full h-full object-cover scale-110 xl:h-max"
+        className="absolute inset-0 w-full h-full object-cover scale-110 xl:h-max blur-border"
         src={assets.hero_bg}
         alt="hero"
       />
 
       {/* Navbar */}
-      <div className='absolute top-[10%] left-1/2 translate-x-[-50%] translate-y-[-50%]'>
+      <div className='absolute top-[7%] left-1/2 translate-x-[-50%] translate-y-[-50%]'>
         <Navbar />
       </div>
 

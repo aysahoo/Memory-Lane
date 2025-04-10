@@ -47,9 +47,11 @@ const Navbar = () => {
         </Link>
       </div>
       <div>
+      <Link to="/auth">
       <button className='hidden sm:inline-block 2xl:hidden md:translate-x-[-40vh] lg:translate-x-[-30vh] xl:translate-x-[-15vh]  text-white whitespace-nowrap text-md border-2 px-3 py-[6px] rounded-xl border-neutral-600 hover:border-neutral-400'>
         <ShinyText text="Sign In" disabled={false} speed={2} className='custom-class' />
       </button>
+      </Link>
       </div>
     </div>
   )
