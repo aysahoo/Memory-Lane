@@ -3,6 +3,7 @@ import logo from './images/Element.png'
 import element from './images/Element_copy.png'
 import login_bg from './images/login.webp'
 import login_min from './images/login_min.png'
+import audio_bg from './images/audio.webp'
 
 
 export const assets = {
@@ -10,5 +11,6 @@ export const assets = {
     logo,
     element,
     login_bg,
-    login_min
+    login_min,
+    audio_bg
 }

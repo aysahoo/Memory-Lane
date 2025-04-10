@@ -8,6 +8,7 @@ import Chat from './pages/Chat'
 import Loader from './pages/Loader'
 import CustomCursor from './components/CustomCursor'
 import FadeInWrapper from './components/FadeIn'
+import About from './pages/About'
 
 
 
@@ -39,6 +40,8 @@ const App = () => {
         <Route path='/auth' element={<FadeInWrapper><AuthPage /></FadeInWrapper>} />
         <Route path='/space' element={<Space />} />
         <Route path='/chat' element={<Chat />} />
+        <Route path='/about' element={<About />} />
+        
       </Routes>
     </div>
   );

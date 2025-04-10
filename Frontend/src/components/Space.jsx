@@ -1,215 +1,122 @@
-import React, { useState } from "react";
-import { Mail } from "lucide-react";
-import { FcGoogle } from 'react-icons/fc';
-import { Link } from "react-router-dom";
-import { assets } from "../assets/assets";
+import React, { useState, useRef } from 'react'
+import { X, Trash2 } from 'lucide-react'
+import TiltedCard from './TiltedCard'
+import AudioPlayer from './AudioPlayer'
+import { assets } from '../assets/assets'
 
+const Space = ({ onClose }) => {
+  const [selectedAudios, setSelectedAudios] = useState([])
+  const [uploadedAudios, setUploadedAudios] = useState([])
+  const fileInputRef = useRef(null)
 
-// Reusable Button
-function Button({ children, className = "", type = "button", disabled = false, ...props }) {
-  return (
-    <button
-      type={type}
-      disabled={disabled}
-      className={`inline-flex items-center justify-center px-5 py-3 rounded-full text-xl font-semibold shadow-md transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-black ${
-        disabled ? "opacity-50 cursor-not-allowed" : ""
-      } ${className}`}
-      {...props}
-    >
-      {children}
-    </button>
-  );
-}
+  const handleUpload = (e) => {
+    const files = Array.from(e.target.files)
+    const newAudios = files.map(file => ({
+      file,
+      name: file.name,
+      url: URL.createObjectURL(file),
+      id: Date.now() + Math.random(),
+    }))
+    setSelectedAudios(prev => [...prev, ...newAudios])
+    if (fileInputRef.current) fileInputRef.current.value = ''
+  }
 
-export default function AuthPage() {
-  const [isLogin, setIsLogin] = useState(true);
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [name, setName] = useState("");
-  const [confirmPassword, setConfirmPassword] = useState("");
-  const [isProcessing, setIsProcessing] = useState(false);
-  const [error, setError] = useState("");
-  const [success, setSuccess] = useState("");
+  const handleDeleteSelected = (id) => {
+    setSelectedAudios(prev => prev.filter(audio => audio.id !== id))
+  }
 
-  // Validation
-  const isValidEmail = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
-  const isValidPassword = password.length >= 8;
-  const isConfirmMatch = password === confirmPassword;
-  const isFormValid = isLogin
-    ? isValidEmail && isValidPassword
-    : isValidEmail && isValidPassword && name.length > 0 && isConfirmMatch;
+  const handleSubmit = () => {
+    setUploadedAudios(prev => [...prev, ...selectedAudios])
+    setSelectedAudios([])
+  }
 
-  // Handle form submit
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    setError("");
-    setSuccess("");
-
-    if (!isFormValid) {
-      setError("Please fill all fields correctly.");
-      return;
-    }
-
-    try {
-      setIsProcessing(true);
-      await new Promise(resolve => setTimeout(resolve, 1000));
-      setSuccess(`${isLogin ? "Login" : "Account created"} successfully! Redirecting...`);
-      setTimeout(() => {
-        window.location.href = "/dashboard";
-      }, 1500);
-    } catch (err) {
-      setError("Something went wrong. Please try again.");
-    } finally {
-      setIsProcessing(false);
-    }
-  };
-
-  const handleGoogleAuth = async () => {
-    setError("");
-    setSuccess("");
-
-    try {
-      setIsProcessing(true);
-      await new Promise(resolve => setTimeout(resolve, 1000));
-      setSuccess("Google sign in successful! Redirecting...");
-      setTimeout(() => {
-        window.location.href = "/dashboard";
-      }, 1500);
-    } catch (err) {
-      setError("Google sign in failed. Try again.");
-    } finally {
-      setIsProcessing(false);
-    }
-  };
+  const renderAudioCard = (audio, isDeletable = true) => (
+    <TiltedCard
+      key={audio.id}
+      imageSrc={assets.audio_bg}
+      altText={audio.name}
+      captionText={audio.name}
+      containerHeight="160px"
+      containerWidth="160px"
+      imageHeight="160px"
+      imageWidth="160px"
+      rotateAmplitude={5}
+      scaleOnHover={1}
+      showMobileWarning={false}
+      showTooltip={false}
+      displayOverlayContent={true}
+      overlayContent={
+        <div className="text-white max-w-[160px] text-center p-3 flex flex-col items-center space-y-16">
+          <div className="flex items-center justify-between w-full px-1">
+            <p className="text-[9px] text-black font-semibold truncate">{audio.name}</p>
+            {isDeletable && (
+              <button
+                onClick={() => handleDeleteSelected(audio.id)}
+                className="bg-black/50 ml-1 rounded-full p-1 text-white hover:text-red-400"
+              >
+                <Trash2 className="w-3 h-3" />
+              </button>
+            )}
+          </div>
+          <AudioPlayer src={audio.url} />
+        </div>
+      }
+    />
+  )
 
   return (
-    <div className="relative min-h-screen bg-black">
-      {/* Background Image */}
-      <img
-        src={assets.hero_bg}
-        alt="Background"
-        className="absolute inset-0 scale-110 w-full h-full object-cover"
-      />
-  
-      {/* Optional dark overlay */}
-      <div className="absolute inset-0 bg-black/40 backdrop-blur-sm" />
-  
-      {/* Back Button */}
-      <Link to="/" className="absolute top-6 left-6 z-20">
-        <button className="bg-neutral-900/70 hover:bg-neutral-900 text-white rounded-lg px-6 py-2 backdrop-blur-md duration-300">
-          ← Back
+    <div className="fixed inset-0 bg-black/40 backdrop-blur-sm z-50 flex items-center justify-center px-2 sm:px-4">
+      <div className="w-full max-w-6xl bg-white/10 border border-white/20 backdrop-blur-xl p-6 sm:p-8 rounded-3xl text-white shadow-2xl relative overflow-y-auto max-h-[90vh]">
+        <button onClick={onClose} className="absolute top-4 right-4 text-white hover:text-neutral-300">
+          <X className="w-6 h-6" />
         </button>
-      </Link>
-  
-      {/* Fixed Header */}
-      <div className="absolute top-12 w-full text-center z-20">
-        <h1 className="text-5xl pt-20 pb-2 font-bold bg-gradient-to-r from-[#459ddc] via-white to-[#459ddc] text-transparent bg-clip-text">
-          Memory Lane
-        </h1>
-      </div>
-  
-      {/* Form */}
-      <div className="relative z-20 flex flex-col items-center justify-start min-h-screen pt-80 px-4 overflow-hidden">
-      <div className="w-full max-w-md flex flex-col space-y-6 overflow-y-auto no-scrollbar max-h-[70vh] px-2">
-    
-    {/* Status Messages */}
-    {error && (
-      <div className="w-full px-4 py-3 rounded-lg bg-red-800/60 text-red-100 border border-red-400 shadow-sm">
-        {error}
-      </div>
-    )}
-    {success && (
-      <div className="w-full px-4 py-3 rounded-lg bg-green-800/60 text-green-100 border border-green-400 shadow-sm">
-        {success}
-      </div>
-    )}
 
-    {/* Form */}
-    <form onSubmit={handleSubmit} className="space-y-4 pb-4">
-      {!isLogin && (
-        <input
-          type="text"
-          placeholder="Your Name"
-          value={name}
-          onChange={(e) => setName(e.target.value)}
-          className="w-full px-5 py-3 mt-2 rounded-full border border-white/30 bg-white/10 text-white  placeholder:text-white/60 focus:outline-none focus:ring-2 focus:ring-[#459ddc] backdrop-blur-sm"
-        />
-      )}
-      <input
-        type="email"
-        placeholder="Email"
-        value={email}
-        onChange={(e) => setEmail(e.target.value)}
-        className="w-full mt-2 px-5 py-3 rounded-full border border-white/30 bg-white/10 text-white placeholder:text-white/60 focus:outline-none focus:ring-2 focus:ring-[#459ddc] backdrop-blur-sm"
-      />
-      <input
-        type="password"
-        placeholder="Password"
-        value={password}
-        onChange={(e) => setPassword(e.target.value)}
-        className="w-full px-5 py-3 rounded-full border border-white/30 bg-white/10 text-white placeholder:text-white/60 focus:outline-none focus:ring-2 focus:ring-[#459ddc] backdrop-blur-sm"
-      />
-      {!isLogin && (
-        <input
-          type="password"
-          placeholder="Confirm Password"
-          value={confirmPassword}
-          onChange={(e) => setConfirmPassword(e.target.value)}
-          className="w-full px-5 py-3 rounded-full border border-white/30 bg-white/10 text-white placeholder:text-white/60 focus:outline-none focus:ring-2 focus:ring-[#459ddc] backdrop-blur-sm"
-        />
-      )}
-    </form>
-  </div>
+        <h2 className="text-xl sm:text-2xl font-semibold mb-4 text-center">Upload Your Audio</h2>
 
-  {/* Fixed Bottom Panel */}
-  <div className="fixed bottom-10 left-0 right-0 px-4 flex justify-center z-30">
-    <div className="w-full max-w-md space-y-4 backdrop-blur-md bg-black/30 p-4 rounded-2xl shadow-lg">
-      <Button
-        className="w-full bg-neutral-900/80 hover:bg-neutral-700 text-white gap-3"
-        onClick={handleGoogleAuth}
-        disabled={isProcessing}
-      >
-        <FcGoogle className="text-2xl" />
-        {isProcessing ? "Please wait..." : `${isLogin ? "Login" : "Sign up"} with Google`}
-      </Button>
+        {/* Input & selected audios */}
+        <div className="w-full border-2 border-dashed border-white/30 rounded-xl p-4 sm:p-6 hover:border-white transition">
+          <label className="block text-center cursor-pointer mb-4">
+            <input
+              ref={fileInputRef}
+              type="file"
+              accept="audio/*"
+              multiple
+              onChange={handleUpload}
+              className="hidden"
+            />
+            <p className="text-sm">Click or drag to upload your audio files</p>
+          </label>
 
-      <Button
-        type="submit"
-        onClick={handleSubmit}
-        className="w-full bg-white text-black hover:bg-gray-200 gap-3"
-        disabled={isProcessing || !isFormValid}
-      >
-        <Mail className="w-6 h-6" />
-        {isProcessing
-          ? isLogin
-            ? "Logging in..."
-            : "Signing up..."
-          : isLogin
-          ? "Login with Email"
-          : "Sign up with Email"}
-      </Button>
+          {selectedAudios.length > 0 && (
+            <>
+              <div className="mt-4 grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4 justify-center">
+                {selectedAudios.map(audio => renderAudioCard(audio, true))}
+              </div>
 
-      <div className="text-center text-gray-300 text-base pt-2">
-        {isLogin ? "Don't have an account?" : "Already have an account?"}{" "}
-        <span
-          className="text-[#459ddc] hover:underline cursor-pointer"
-          onClick={() => setIsLogin(!isLogin)}
-        >
-          {isLogin ? "Sign up" : "Login"} here.
-        </span>
-      </div>
+              <div className="mt-4 text-center">
+                <button
+                  onClick={handleSubmit}
+                  className="bg-white/20 hover:bg-white/30 px-5 py-2 rounded-xl text-white font-semibold transition"
+                >
+                  Submit Files
+                </button>
+              </div>
+            </>
+          )}
+        </div>
 
-      <div className="flex justify-center text-sm text-gray-500 gap-4 pt-1">
-        <a href="#" className="hover:underline">Terms of Use</a>
-        <span>|</span>
-        <a href="#" className="hover:underline">Privacy Policy</a>
+        {/* Uploaded audios */}
+        {uploadedAudios.length > 0 && (
+          <>
+            <h3 className="mt-10 text-lg font-semibold text-center">Uploaded Audios</h3>
+            <div className="mt-4 grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4 justify-center">
+              {uploadedAudios.map(audio => renderAudioCard(audio))}
+            </div>
+          </>
+        )}
       </div>
     </div>
-  </div>
-</div>
-
-    </div>
-  );
-  
-  
+  )
 }
+
+export default Space
