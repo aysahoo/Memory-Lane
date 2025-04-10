@@ -1,6 +1,6 @@
 import hero_bg from './images/hero_background.png'
 import logo from './images/Element.png'
-import element from './images/Element_copy.png'
+import element from './images/Element_copy1.webp'
 import login_bg from './images/login.webp'
 import login_min from './images/login_min.png'
 import audio_bg from './images/audio.webp'
