@@ -75,35 +75,47 @@ const Space = ({ onClose }) => {
 
         {/* Input & selected audios */}
         <div className="w-full border-2 border-dashed border-white/30 rounded-xl p-4 sm:p-6 hover:border-white transition">
-          <label className="block text-center cursor-pointer mb-4">
-            <input
-              ref={fileInputRef}
-              type="file"
-              accept="audio/*"
-              multiple
-              onChange={handleUpload}
-              className="hidden"
-            />
-            <p className="text-sm">Click or drag to upload your audio files</p>
-          </label>
+  <label className={`block text-center cursor-pointer mb-4 ${selectedAudios.length > 0 ? 'hidden' : ''}`}>
+    <input
+      ref={fileInputRef}
+      type="file"
+      accept="audio/*"
+      onChange={(e) => {
+        const file = e.target.files[0]
+        if (file) {
+          const newAudio = {
+            file,
+            name: file.name,
+            url: URL.createObjectURL(file),
+            id: Date.now() + Math.random(),
+          }
+          setSelectedAudios([newAudio])
+        }
+        if (fileInputRef.current) fileInputRef.current.value = ''
+      }}
+      className="hidden"
+    />
+    <p className="text-sm">Click to upload your audio file</p>
+  </label>
 
-          {selectedAudios.length > 0 && (
-            <>
-              <div className="mt-4 grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4 justify-center">
-                {selectedAudios.map(audio => renderAudioCard(audio, true))}
-              </div>
+  {selectedAudios.length > 0 && (
+    <>
+      <div className="flex justify-center">
+        {renderAudioCard(selectedAudios[0], true)}
+      </div>
 
-              <div className="mt-4 text-center">
-                <button
-                  onClick={handleSubmit}
-                  className="bg-white/20 hover:bg-white/30 px-5 py-2 rounded-xl text-white font-semibold transition"
-                >
-                  Submit Files
-                </button>
-              </div>
-            </>
-          )}
-        </div>
+      <div className="mt-4 text-center">
+        <button
+          onClick={handleSubmit}
+          className="bg-white/20 hover:bg-white/30 px-5 py-2 rounded-xl text-white font-semibold transition"
+        >
+          Submit File
+        </button>
+      </div>
+    </>
+  )}
+</div>
+
 
         {/* Uploaded audios */}
         {uploadedAudios.length > 0 && (
