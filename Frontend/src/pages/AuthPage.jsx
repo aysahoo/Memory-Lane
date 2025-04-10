@@ -106,12 +106,23 @@ export default function AuthPage() {
 
       {/* Right - Auth Form */}
       <div className="md:w-1/2 flex items-center justify-center md:p-10 p-4">
+      <Link to="/">
+      <button
+      className= "md:hidden absolute top-0 left-0 bg-neutral-800 opacity-50 hover:bg-neutral-600 rounded-lg ml-10 mt-10 px-6 py-1 duration-500 "
+      >
+      ←
+      </button>
+    </Link>
+      
   <div className="w-full max-w-lg backdrop-blur-xl rounded-[40px] p-6 sm:p-10 md:p-12">
+    
     <div className="flex flex-col items-center text-center space-y-6 sm:space-y-8">
+      
       
       <h1 className="text-3xl sm:text-4xl md:text-5xl font-medium pb-2 bg-gradient-to-r from-[#459ddc] via-[#dadada] to-[#459ddc] text-transparent bg-clip-text">
         Memory Lane
       </h1>
+      
 
       {error && (
         <div className="w-full px-4 py-3 rounded-lg bg-red-900/50 border border-red-500 text-red-100 text-sm sm:text-base">

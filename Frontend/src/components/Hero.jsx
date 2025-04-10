@@ -38,7 +38,7 @@ const Hero = () => {
         </h3>
 
         {/* CTA Button */}
-        <div className="mt-24 bg-neutral-900 border-2 border-neutral-600 hover:border-neutral-400 text-neutral-300 rounded-lg py-2 px-5 sm:py-3 sm:px-6 transition-all duration-300">
+        <div className="mt-24 bg-neutral-900 items-center border-2 border-neutral-600 hover:border-neutral-400 text-neutral-300 rounded-lg py-2 px-5 sm:py-3 sm:px-6 transition-all duration-300">
           <Link to="/chat">
             <button className="text-sm sm:text-base">
               <ShinyText text="Get Started →" disabled={false} speed={2} />
