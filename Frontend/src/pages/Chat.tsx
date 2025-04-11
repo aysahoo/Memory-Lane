@@ -122,7 +122,7 @@ const Chat: React.FC = () => {
         toggleSidebar={toggleSidebar}
       />
       
-      <main className="relative flex flex-1 flex-col transition-all duration-300 bg-gradient-to-b from-gray-900/30 to-black/60 backdrop-blur-sm">
+      <main className="relative flex flex-1 flex-col transition-all overflow-y-hidden duration-300 bg-gradient-to-b from-gray-900/30 to-black/60 backdrop-blur-sm">
         <div className="flex justify-between items-center">
           <ChatHeader 
             activeConversation={activeConversation} 
