@@ -39,9 +39,9 @@ const Team = () => {
 
   return (
     <div className="relative w-full min-h-screen bg-gradient-to-tr from-black via-zinc-900 to-slate-900 overflow-hidden text-white">
-      <div className="absolute top-[7%] left-1/2 translate-x-[-50%] translate-y-[-50%] z-50">
+      {/* <div className="absolute top-[7%] left-1/2 translate-x-[-50%] translate-y-[-50%] z-50">
         <Navbar />
-      </div>
+      </div> */}
 
       {/* Background text */}
       {/* <h1 className="absolute hidden lg:inline lg:text-[14vw] font-extrabold text-white/5 lg:top-[15%] left-[35%] lg:left-1/4 transform -translate-x-1/2 -translate-y-1/2 pointer-events-none z-0">
