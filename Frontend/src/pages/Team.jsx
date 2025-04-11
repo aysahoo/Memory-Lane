@@ -51,7 +51,7 @@ const Team = () => {
         TEAM
       </h1>
 
-      {/* Desktop layout */}
+      {/* Desktop layout
       <div className="h-full px-20 mt-20 hidden lg:block">
         {teamMembers.map((member, index) => (
           <div
@@ -94,10 +94,10 @@ const Team = () => {
             </div>
           </div>
         ))}
-      </div>
+      </div> */}
 
       {/* Mobile layout with smaller cards */}
-      <div className="lg:hidden sm:items-center flex flex-col pl-8 gap-10 mt-32">
+      {/* <div className="lg:hidden sm:items-center flex flex-col pl-8 gap-10 mt-32">
         {teamMembers.map((member, index) => (
           <div key={index} className="w-[200px] flex text-center">
             <TiltedCard
@@ -136,7 +136,7 @@ const Team = () => {
             </div>
           </div>
         ))}
-      </div>
+      </div> */}
     </div>
   )
 }
