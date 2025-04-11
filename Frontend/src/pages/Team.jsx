@@ -8,7 +8,7 @@ const Team = () => {
     {
       name: "Ankit Kumar",
       role: "Backend Developer",
-      img: "https://picsum.photos/200",
+      img: assets.ankit,
       position: "left-[60%] top-[35%] lg:left-[75%] lg:top-[30%]",
       socialLinks: {
         github: 'https://github.com/Ankit-Kumar20',
@@ -18,7 +18,7 @@ const Team = () => {
     {
       name: "Ayush Sahoo",
       role: "Developer & Designer",
-      img: "https://picsum.photos/200",
+      img: assets.ayush,
       position: "left-[45%] top-[40%] lg:left-[45%] lg:top-[50%]",
       socialLinks: {
         github: 'https://github.com/aysahoo',
@@ -28,7 +28,7 @@ const Team = () => {
     {
       name: "Adarsha Natia",
       role: "Developer & Designer",
-      img: "https://picsum.photos/200",
+      img: assets.adarsh,
       position: "left-[10%] top-[45%] lg:left-[10%] lg:top-[40%]",
       socialLinks: {
         github: 'https://github.com/Adarsha2004',
