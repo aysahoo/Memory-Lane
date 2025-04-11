@@ -65,8 +65,8 @@ const Space = ({ onClose }) => {
   )
 
   return (
-    <div className="fixed inset-0 bg-black/40 backdrop-blur-sm z-50 flex items-center justify-center px-2 sm:px-4">
-      <div className="w-full max-w-6xl bg-white/10 border border-white/20 backdrop-blur-xl px-2 p-6 sm:p-8 rounded-3xl text-white shadow-2xl relative overflow-y-auto max-h-[90vh]">
+    <div className="fixed inset-0 bg-black/10 backdrop-blur-sm z-50 flex items-center justify-center px-2 sm:px-4">
+      <div className="w-full max-w-6xl bg-black/80 border border-white/20 backdrop-blur-xl px-2 p-6 sm:p-8 rounded-3xl text-white shadow-2xl relative overflow-y-auto max-h-[90vh]">
         <button onClick={onClose} className="absolute top-4 right-4 text-white hover:text-neutral-300">
           <X className="w-6 h-6" />
         </button>
