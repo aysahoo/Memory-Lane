@@ -115,7 +115,7 @@ const Team = () => {
               displayOverlayContent={false}
             />
             <div className="mt-6 ml-4">
-              <h4 className="text-lg font-semibold whitespace-nowrap">{member.name}</h4>
+              <h4 className="text-sm font-thin whitespace-nowrap">{member.name}</h4>
               <p className="text-xs text-[#459ddc]">{member.role}</p>
               <div className="mt-2 flex justify-center gap-2">
                 <a href={member.socialLinks.github} target="_blank" rel="noopener noreferrer">
