@@ -44,12 +44,12 @@ const Team = () => {
       </div>
 
       {/* Background text */}
-      <h1 className="absolute hidden lg:inline lg:text-[14vw] font-extrabold text-white/5 lg:top-[15%] left-[35%] lg:left-1/4 transform -translate-x-1/2 -translate-y-1/2 pointer-events-none z-0">
+      {/* <h1 className="absolute hidden lg:inline lg:text-[14vw] font-extrabold text-white/5 lg:top-[15%] left-[35%] lg:left-1/4 transform -translate-x-1/2 -translate-y-1/2 pointer-events-none z-0">
         THE
       </h1>
       <h1 className="absolute hidden lg:inline lg:text-[18vw] font-extrabold text-white/5 lg:top-[40%] left-[62%] lg:left-1/2 transform -translate-x-1/2 -translate-y-1/2 pointer-events-none z-0">
         TEAM
-      </h1>
+      </h1> */}
 
       {/* Desktop layout
       <div className="h-full px-20 mt-20 hidden lg:block">
