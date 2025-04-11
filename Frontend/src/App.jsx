@@ -9,6 +9,7 @@ import Loader from './pages/Loader'
 import CustomCursor from './components/CustomCursor'
 import FadeInWrapper from './components/FadeIn'
 import About from './pages/About'
+import TermsPolicies from './pages/TermsPolicies'
 
 
 
@@ -41,7 +42,7 @@ const App = () => {
         <Route path='/space' element={<Space />} />
         <Route path='/chat' element={<Chat />} />
         <Route path='/about' element={<About />} />
-        
+        <Route path='/terms' element={<TermsPolicies />} />
       </Routes>
     </div>
   );

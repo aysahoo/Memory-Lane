@@ -205,9 +205,9 @@ export default function AuthPage() {
         </p>
 
         <div className="text-xs sm:text-sm text-gray-300 space-x-2 sm:space-x-4">
-          <a href="#" className="hover:underline">Terms of Use</a>
-          <span>|</span>
-          <a href="#" className="hover:underline">Privacy Policy</a>
+          <Link to="/terms">
+          <a href="" className="hover:underline">Terms and Policies</a>
+          </Link>
         </div>
       </div>
     </div>
