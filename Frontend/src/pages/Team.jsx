@@ -97,7 +97,7 @@ const Team = () => {
       </div> 
 
       {/* Mobile layout with smaller cards */}
-      <div className="lg:hidden sm:items-center flex flex-col pl-8 gap-10 mt-32">
+      <div className="lg:hidden sm:items-center flex flex-col pl-8 gap-10 mt-[100px] lg:mt-32">
         {teamMembers.map((member, index) => (
           <div key={index} className="w-[200px] flex text-center">
             <TiltedCard
