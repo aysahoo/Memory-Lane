@@ -1,15 +1,20 @@
-import React from 'react'
+import React, { useMemo } from 'react'
 import Navbar from '../components/Navbar'
 import { assets } from '../assets/assets'
 import TiltedCard from '../components/TiltedCard'
 
+const positions = [
+  "left-[60%] top-[35%] lg:left-[75%] lg:top-[30%]",
+  "left-[45%] top-[40%] lg:left-[45%] lg:top-[50%]",
+  "left-[10%] top-[45%] lg:left-[10%] lg:top-[40%]",
+];
+
 const Team = () => {
-  const teamMembers = [
+  const baseMembers = [
     {
       name: "Ankit Kumar",
       role: "Backend Developer",
       img: assets.ankit,
-      position: "left-[60%] top-[35%] lg:left-[75%] lg:top-[30%]",
       socialLinks: {
         github: 'https://github.com/Ankit-Kumar20',
         linkedin: 'https://www.linkedin.com/in/ankit-kumar-017011204/'
@@ -19,7 +24,6 @@ const Team = () => {
       name: "Ayush Sahoo",
       role: "Developer & Designer",
       img: assets.ayush,
-      position: "left-[45%] top-[40%] lg:left-[45%] lg:top-[50%]",
       socialLinks: {
         github: 'https://github.com/aysahoo',
         linkedin: 'https://www.linkedin.com/in/ayush-sahoo04/'
@@ -29,13 +33,20 @@ const Team = () => {
       name: "Adarsha Natia",
       role: "Developer & Designer",
       img: assets.adarsh,
-      position: "left-[10%] top-[45%] lg:left-[10%] lg:top-[40%]",
       socialLinks: {
         github: 'https://github.com/Adarsha2004',
         linkedin: 'https://www.linkedin.com/in/adarsha-natia-9921092b4/'
       }
     },
-  ]
+  ];
+
+  const shuffledPositions = useMemo(() => {
+    return [...positions].sort(() => Math.random() - 0.5);
+  }, []);
+
+  const shuffledMobileMembers = useMemo(() => {
+    return [...baseMembers].sort(() => Math.random() - 0.5);
+  }, []);
 
   return (
     <div className="relative w-full min-h-screen bg-gradient-to-tr from-black via-zinc-900 to-slate-900 overflow-hidden text-white">
@@ -51,12 +62,12 @@ const Team = () => {
         TEAM
       </h1>
 
-      {/* Desktop layout*/}
+      {/* Desktop layout */}
       <div className="h-full px-20 mt-20 hidden lg:block">
-        {teamMembers.map((member, index) => (
+        {baseMembers.map((member, index) => (
           <div
             key={index}
-            className={`absolute ${member.position} z-10 w-[250px] text-center`}
+            className={`absolute ${shuffledPositions[index]} z-10 w-[250px] text-center`}
           >
             <TiltedCard
               imageSrc={member.img}
@@ -94,12 +105,12 @@ const Team = () => {
             </div>
           </div>
         ))}
-      </div> 
+      </div>
 
-      {/* Mobile layout with smaller cards */}
-      <div className="lg:hidden sm:items-center flex flex-col pl-8 gap-10 mt-[100px] lg:mt-32">
-        {teamMembers.map((member, index) => (
-          <div key={index} className="w-[200px] flex text-center">
+      {/* Mobile layout with shuffled members */}
+      <div className="lg:hidden sm:items-center flex flex-col pl-10 gap-10 mt-[100px] lg:mt-32">
+        {shuffledMobileMembers.map((member, index) => (
+          <div key={index} className={`w-[200px] ${shuffledPositions[index]} flex text-center`}>
             <TiltedCard
               imageSrc={member.img}
               altText={member.name}
@@ -138,7 +149,7 @@ const Team = () => {
         ))}
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default Team
+export default Team;
