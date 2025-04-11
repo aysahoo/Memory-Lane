@@ -12,21 +12,21 @@ const positions = [
 const Team = () => {
   const baseMembers = [
     {
-      name: "Ankit Kumar",
-      role: "Backend Developer",
-      img: assets.ankit,
-      socialLinks: {
-        github: 'https://github.com/Ankit-Kumar20',
-        linkedin: 'https://www.linkedin.com/in/ankit-kumar-017011204/'
-      }
-    },
-    {
       name: "Ayush Sahoo",
       role: "Developer & Designer",
       img: assets.ayush,
       socialLinks: {
         github: 'https://github.com/aysahoo',
         linkedin: 'https://www.linkedin.com/in/ayush-sahoo04/'
+      }
+    },
+    {
+      name: "Ankit Kumar",
+      role: "Backend Developer",
+      img: assets.ankit,
+      socialLinks: {
+        github: 'https://github.com/Ankit-Kumar20',
+        linkedin: 'https://www.linkedin.com/in/ankit-kumar-017011204/'
       }
     },
     {
