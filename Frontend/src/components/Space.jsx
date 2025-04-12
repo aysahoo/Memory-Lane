@@ -72,6 +72,8 @@ const Space = ({ onClose }) => {
         </button>
 
         <h2 className="text-xl sm:text-2xl font-semibold mb-4 text-center">Upload Your Audio</h2>
+
+        {/* Input & selected audios */}
         {/* Input & selected audios */}
 <div className="flex flex-col items-center justify-center w-full">
   {selectedAudios.length === 0 ? (
