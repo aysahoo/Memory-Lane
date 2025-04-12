@@ -93,7 +93,7 @@ const Space = ({ onClose }) => {
       {/* Submit Button */}
       <button
         onClick={handleSubmit}
-        className="absolute -top-4 -right-3 text-xs bg-white/10 hover:bg-white/20 px-2 py-1 rounded-md text-white font-medium shadow-sm transition"
+        className="absolute -top-3 -right-3 text-xs bg-white/10 hover:bg-white/20 px-2 py-1 rounded-md text-white font-medium shadow-sm transition"
       >
         Submit
       </button>
