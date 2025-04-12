@@ -35,6 +35,11 @@ const Chat: React.FC = () => {
   const [chatAttachment, setChatAttachment] = useState<File | null>(null);
   const messagesEndRef = useRef<HTMLDivElement>(null);
 
+  const handleDeleteConversation = (id: string) => {
+    setConversations(prev => prev.filter(conv => conv.id !== id));
+  };
+  
+
   // Set sidebar state based on screen size
   useEffect(() => {
     const handleResize = () => {
@@ -112,7 +117,7 @@ const Chat: React.FC = () => {
   };
 
   return (
-    <div className="flex h-screen w-full overflow-hidden bg-gray-900 text-white">
+    <div className="flex h-dvh w-full overflow-hidden bg-gray-900 text-white">
       <Sidebar
         sidebarOpen={sidebarOpen}
         conversations={conversations}
@@ -120,6 +125,7 @@ const Chat: React.FC = () => {
         createNewConversation={createNewConversation}
         setActiveConversation={setActiveConversation}
         toggleSidebar={toggleSidebar}
+        handleDeleteConversation={handleDeleteConversation}
       />
       
       <main className="relative flex flex-1 flex-col transition-all overflow-y-hidden duration-300 bg-gradient-to-b from-gray-900/30 to-black/60 backdrop-blur-sm">
