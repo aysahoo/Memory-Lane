@@ -112,7 +112,7 @@ const Chat: React.FC = () => {
   };
 
   return (
-    <div className="flex h-screen w-full overflow-hidden bg-gray-900 text-white">
+    <div className="flex h-screen w-full bg-gray-900 text-white">
       <Sidebar
         sidebarOpen={sidebarOpen}
         conversations={conversations}
