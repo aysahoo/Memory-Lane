@@ -122,7 +122,7 @@ const Chat: React.FC = () => {
         toggleSidebar={toggleSidebar}
       />
       
-      <main className="relative flex flex-1 flex-col bg-gradient-to-b from-gray-900/30 to-black/60 backdrop-blur-sm">
+      <main className="relative flex flex-1 flex-col transition-all overflow-y-hidden duration-300 bg-gradient-to-b from-gray-900/30 to-black/60 backdrop-blur-sm">
         <div className="flex justify-between items-center">
           <ChatHeader 
             activeConversation={activeConversation} 
@@ -133,10 +133,11 @@ const Chat: React.FC = () => {
           />
         </div>
         
-        <div className="flex flex-1 flex-col min-h-0">
-        <div className={`flex-1 overflow-y-auto scrollbar-thin`}>
+        <div className={`flex-1 ${messages.length > 0 ? 'overflow-y-auto scrollbar-thin' : 'overflow-hidden'}`}>
           {messages.length === 0 ? (
-            <WelcomeScreen welcomeWords={welcomeWords} />
+            <WelcomeScreen 
+              welcomeWords={welcomeWords}
+            />
           ) : (
             <ChatMessages 
               messages={messages} 
@@ -144,18 +145,15 @@ const Chat: React.FC = () => {
             />
           )}
         </div>
-
-        <div className="sticky bottom-0 z-10 bg-gradient-to-b from-transparent to-black/60 backdrop-blur-sm">
-          <ChatInput 
-            message={message}
-            setMessage={setMessage}
-            sendMessage={sendMessage}
-            chatAttachment={chatAttachment}
-            setChatAttachment={setChatAttachment}
-          />
-        </div>
-      </div>
-
+        
+        <ChatInput 
+          message={message}
+          setMessage={setMessage}
+          sendMessage={sendMessage}
+          chatAttachment={chatAttachment}
+          setChatAttachment={setChatAttachment}
+        />
+        {showSpace && <Space onClose={closeSpace} />}
 
       </main>
     </div>

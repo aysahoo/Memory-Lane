@@ -1,7 +1,6 @@
 import React from 'react';
 import { Conversation } from './CommonTypes';
 import { FolderOpenDot } from 'lucide-react';
-import ShinyText from './ShinyText';
 
 interface ChatHeaderProps {
   sidebarOpen: boolean; 
@@ -52,7 +51,7 @@ const ChatHeader: React.FC<ChatHeaderProps> = ({
       
       {/* Ayush: My Space button */}
       <button
-        className="p-1.5 md:p-2 text-[#459ddc] mr-1 "
+        className="p-1.5 md:p-2 text-[#459ddc] mr-1"
         onClick={onOpenSpace}
       >
         <FolderOpenDot className="w-6 h-6" />
