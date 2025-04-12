@@ -7,7 +7,7 @@ const Navbar = () => {
 
   const links = [
     { label: "Home", value: "home", path: "/" },
-    { label: "Process", value: "process", path: "/process" },
+    { label: "SignIn", value: "process", path: "/auth" },
     { label: "About", value: "about", path: "/about" },
     { label: "Team", value: "team", path: "/team" },
   ]
@@ -15,7 +15,7 @@ const Navbar = () => {
   return (
     <div className='flex justify-between items-center'>
       <div>
-        <button className='invisible whitespace-nowrap text-white text-xl font-semibold'>
+        <button className='hidden sm:inline-block invisible whitespace-nowrap text-white text-xl font-semibold'>
           Memory Lane
         </button>
       </div>
@@ -27,7 +27,7 @@ const Navbar = () => {
           return (
             <li
               key={link.value}
-              className={`cursor-pointer px-6 transition-colors duration-300 hover:text-neutral-300 ${
+              className={`cursor-pointer px-4 sm:px-6 transition-colors duration-300 hover:text-neutral-300 ${
                 isActive ? 'text-neutral-300' : ''
               }`}
             >
@@ -40,9 +40,18 @@ const Navbar = () => {
       </ul>
 
       <div>
-        <button className='text-white whitespace-nowrap text-md border-2 px-3 py-[6px] rounded-xl border-neutral-600 hover:border-neutral-400 '>
-          <ShinyText text="Sign In" disabled={false} speed={2} className='custom-class' />
-        </button>
+      <Link to="/auth">
+      <button className='hidden 2xl:inline-block text-white whitespace-nowrap text-md border-2 px-3 py-[6px] rounded-xl border-neutral-600 hover:border-neutral-400'>
+        <ShinyText text="Sign In" disabled={false} speed={2} className='custom-class' />
+      </button>
+        </Link>
+      </div>
+      <div>
+      <Link to="/auth">
+      <button className='hidden sm:inline-block 2xl:hidden md:translate-x-[-40vh] lg:translate-x-[-30vh] xl:translate-x-[-15vh]  text-white whitespace-nowrap text-md border-2 px-3 py-[6px] rounded-xl border-neutral-600 hover:border-neutral-400'>
+        <ShinyText text="Sign In" disabled={false} speed={2} className='custom-class' />
+      </button>
+      </Link>
       </div>
     </div>
   )

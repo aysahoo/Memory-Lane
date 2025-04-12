@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en" class="bg-gradient-to-tr from-black via-zinc-900 to-slate-900">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>404 - Not Found</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+      .fade-in {
+        opacity: 0;
+        transform: scale(0.95);
+        animation: fadeIn 0.6s ease-out forwards;
+      }
+
+      @keyframes fadeIn {
+        to {
+          opacity: 1;
+          transform: scale(1);
+        }
+      }
+    </style>
+  </head>
+  <body class="min-h-screen flex items-center justify-center text-white px-6 relative overflow-hidden">
+    <div class="relative z-10 max-w-md text-center backdrop-blur-md bg-white/5 rounded-2xl p-10 shadow-2xl border border-white/10 fade-in">
+      <h1 class="text-6xl font-extrabold tracking-widest mb-4">404</h1>
+      <p class="text-white/80 mb-6 text-lg">Oops! The page you're looking for doesn’t exist.</p>
+      <a
+        href="/"
+        class="inline-block px-6 py-3 rounded-xl bg-[#459ddc] text-white font-medium hover:bg-[#357fb8] transition-all duration-300"
+      >
+        Go Back Home
+      </a>
+    </div>
+
+    <!-- Glitch background text -->
+    <h1 class="absolute text-[25vw] font-extrabold text-white/5 pointer-events-none select-none z-0">
+      ERROR
+    </h1>
+  </body>
+</html>
+
+<!-- 
+  Custom 404 Error Page
+
+  This page is shown when the user navigates to a non-existent route.
+  Since React uses client-side routing (react-router-dom), Vercel needs a static 404.html
+  in the public folder to handle unmatched routes on hard refresh or direct access.
+
+  This page mimics the style of our React-based ErrorPage using only HTML + TailwindCSS,
+  so it renders correctly without needing React or JavaScript.
+
+  If you update the design in React, update this file to match visually.
+-->
