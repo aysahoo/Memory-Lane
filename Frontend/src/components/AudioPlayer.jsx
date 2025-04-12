@@ -40,7 +40,7 @@ const AudioPlayer = ({ src }) => {
   }, []);
 
   return (
-    <div className="w-full bg-white/10 backdrop-blur-md p-3 rounded-xl">
+    <div className="w-full bg-black/30 backdrop-blur-md p-3 rounded-xl">
       <div className="flex items-center gap-3">
         <button
           onClick={togglePlayback}

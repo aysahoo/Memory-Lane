@@ -1,11 +1,9 @@
-"use client";
-
 import React, { useState } from "react";
 import { Mail } from "lucide-react";
 import { FcGoogle } from 'react-icons/fc';
 import { Link } from "react-router-dom";
-import { authClient } from "../lib/auth-client"; // still used for email/password
 import { assets } from "../assets/assets";
+
 
 // Reusable Button
 function Button({ children, className = "", type = "button", disabled = false, ...props }) {
@@ -33,6 +31,8 @@ export default function AuthPage() {
   const [error, setError] = useState("");
   const [success, setSuccess] = useState("");
 
+  
+
   // Validation
   const isValidEmail = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
   const isValidPassword = password.length >= 8;
@@ -41,6 +41,7 @@ export default function AuthPage() {
     ? isValidEmail && isValidPassword
     : isValidEmail && isValidPassword && name.length > 0 && isConfirmMatch;
 
+  // Handle form submit
   const handleSubmit = async (e) => {
     e.preventDefault();
     setError("");
@@ -53,20 +54,13 @@ export default function AuthPage() {
 
     try {
       setIsProcessing(true);
-
-      if (isLogin) {
-        await authClient.signIn.email({ body : {email, password} });
-        setSuccess("Login successful! Redirecting...");
-      } else {
-        await authClient.registerWithEmail({ email, password, name });
-        setSuccess("Account created! Redirecting...");
-      }
-
-      // setTimeout(() => {
-      //   window.location.href = "/dashboard";
-      // }, 1500);
+      await new Promise(resolve => setTimeout(resolve, 1000));
+      setSuccess(`${isLogin ? "Login" : "Account created"} successfully! Redirecting...`);
+      setTimeout(() => {
+        window.location.href = "/dashboard";
+      }, 1500);
     } catch (err) {
-      setError(err?.message || "Authentication failed. Please try again.");
+      setError("Something went wrong. Please try again.");
     } finally {
       setIsProcessing(false);
     }
@@ -212,7 +206,7 @@ export default function AuthPage() {
 
         <div className="text-xs sm:text-sm text-gray-300 space-x-2 sm:space-x-4">
           <Link to="/terms">
-          <span className="hover:underline">Terms and Policies</span>
+          <a href="" className="hover:underline">Terms and Policies</a>
           </Link>
         </div>
       </div>

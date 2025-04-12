@@ -132,11 +132,11 @@ const Chat: React.FC = () => {
             onOpenSpace={openSpace}
           />
         </div>
-        <div className={`flex-1 ${messages.length > 0 ? 'overflow-y-auto scrollbar-thin' : 'overflow-hidden'}`}>
+        
+        <div className="flex flex-1 flex-col min-h-0">
+        <div className={`flex-1 overflow-y-auto scrollbar-thin`}>
           {messages.length === 0 ? (
-            <WelcomeScreen 
-              welcomeWords={welcomeWords}
-            />
+            <WelcomeScreen welcomeWords={welcomeWords} />
           ) : (
             <ChatMessages 
               messages={messages} 
@@ -144,15 +144,18 @@ const Chat: React.FC = () => {
             />
           )}
         </div>
-        
-        <ChatInput 
-          message={message}
-          setMessage={setMessage}
-          sendMessage={sendMessage}
-          chatAttachment={chatAttachment}
-          setChatAttachment={setChatAttachment}
-        />
-        {showSpace && <Space onClose={closeSpace} />}
+
+        <div className="sticky bottom-0 z-10 bg-gradient-to-b from-transparent to-black/60 backdrop-blur-sm">
+          <ChatInput 
+            message={message}
+            setMessage={setMessage}
+            sendMessage={sendMessage}
+            chatAttachment={chatAttachment}
+            setChatAttachment={setChatAttachment}
+          />
+        </div>
+      </div>
+
 
       </main>
     </div>
