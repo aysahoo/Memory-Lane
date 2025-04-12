@@ -24,13 +24,17 @@ const Space = ({ onClose }) => {
   const handleDeleteSelected = (id) => {
     setSelectedAudios(prev => prev.filter(audio => audio.id !== id))
   }
+  const handleDeleteUploaded = (id) => {
+    setUploadedAudios(prev => prev.filter(audio => audio.id !== id));
+  };
+  
 
   const handleSubmit = () => {
     setUploadedAudios(prev => [...prev, ...selectedAudios])
     setSelectedAudios([])
   }
 
-  const renderAudioCard = (audio, isDeletable = true) => (
+  const renderAudioCard = (audio, isDeletable = true, onDelete = null) => (
     <TiltedCard
       key={audio.id}
       imageSrc={assets.audio_bg}
@@ -49,9 +53,9 @@ const Space = ({ onClose }) => {
         <div className="text-white max-w-[140px] text-center p-3 flex flex-col items-center space-y-10">
           <div className="flex items-center justify-between w-full px-1">
             <p className="text-[9px] text-black font-semibold truncate">{audio.name}</p>
-            {isDeletable && (
+            {isDeletable && onDelete && (
               <button
-                onClick={() => handleDeleteSelected(audio.id)}
+                onClick={() => onDelete(audio.id)}
                 className="bg-black/50 ml-1 rounded-full p-1 text-white hover:text-red-400"
               >
                 <Trash2 className="w-3 h-3" />
@@ -63,6 +67,7 @@ const Space = ({ onClose }) => {
       }
     />
   )
+  
 
   return (
     <div className="fixed inset-0 bg-black/10 backdrop-blur-sm z-50 flex items-center justify-center px-2 sm:px-4">
@@ -88,7 +93,8 @@ const Space = ({ onClose }) => {
     </label>
   ) : (
     <div className="relative mt-4">
-      {renderAudioCard(selectedAudios[0], true)}
+      {renderAudioCard(selectedAudios[0], true, handleDeleteSelected)}
+
 
       {/* Submit Button */}
       <button
@@ -107,7 +113,7 @@ const Space = ({ onClose }) => {
     
     <div className="mt-4 max-h-[300px] overflow-y-auto pr-1 scrollbar-thin scrollbar-thumb-white/20 scrollbar-track-transparent">
       <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-6 sm:gap-y-10 w-fit sm:w-full mx-auto">
-        {uploadedAudios.map(audio => renderAudioCard(audio))}
+      {uploadedAudios.map(audio => renderAudioCard(audio, true, handleDeleteUploaded))}
       </div>
     </div>
   </>
