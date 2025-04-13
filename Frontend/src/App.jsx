@@ -26,7 +26,7 @@ const App = () => {
         setShowContent(true);
       }, 300);
       return () => clearTimeout(contentTimer);
-    }, 1000);
+    }, 3000);
 
     return () => clearTimeout(loadingTimer);
   }, []);

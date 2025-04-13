@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Mail } from "lucide-react";
 import { FcGoogle } from 'react-icons/fc';
 import { Link } from "react-router-dom";
@@ -32,6 +32,17 @@ export default function AuthPage() {
   const [success, setSuccess] = useState("");
   const [showOTP, setShowOTP] = useState(false);
 
+  //Loading the TEam images
+    useEffect(() => {
+      // const img = new Image()
+      const img1 = new Image()
+      const img2 = new Image()
+      const img3 = new Image()
+      // img.src = assets.hero_bg
+      img1.src = assets.adarsh
+      img2.src = assets.ankit
+      img3.src = assets.ayush
+    }, [])
   
 
   // Validation
