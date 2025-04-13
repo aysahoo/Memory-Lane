@@ -1,55 +1,67 @@
-import React, { useState, useEffect } from 'react'
-import { Route, Routes } from 'react-router-dom'
-import Homepage from './pages/Homepage'
-import Team from './pages/Team'
-import AuthPage from './pages/AuthPage'
-import Space from './components/Space'
-import Chat from './pages/Chat'
-import Loader from './pages/Loader'
-import CustomCursor from './components/CustomCursor'
-import FadeInWrapper from './components/FadeIn'
-import About from './pages/About'
-import TermsPolicies from './pages/TermsPolicies'
-import ErrorPage from './pages/ErrorPage' // ⬅️ Import the 404 Page
-import ProfileSettings from './pages/ProfileSettings'
+import React, { useState, useEffect } from 'react';
+import { Route, Routes } from 'react-router-dom';
+import Homepage from './pages/Homepage';
+import Team from './pages/Team';
+import AuthPage from './pages/AuthPage';
+import Space from './components/Space';
+import Chat from './pages/Chat';
+import Loader from './pages/Loader';
+import CustomCursor from './components/CustomCursor';
+import FadeInWrapper from './components/FadeIn';
+import About from './pages/About';
+import TermsPolicies from './pages/TermsPolicies';
+import ErrorPage from './pages/ErrorPage';
+import ProfileSettings from './pages/ProfileSettings';
+import { ReactLenis } from 'lenis/react';
 
 const App = () => {
   const [isLoading, setIsLoading] = useState(true);
-  const [fadeIn, setFadeIn] = useState(false);
+  const [showContent, setShowContent] = useState(false);
 
   useEffect(() => {
+    // Simulate dynamic asset readiness/loading
     const loadingTimer = setTimeout(() => {
       setIsLoading(false);
-      const fadeTimer = setTimeout(() => {
-        setFadeIn(true);
-      }, 200);
-      return () => clearTimeout(fadeTimer);
-    }, 4000);
+
+      // Small delay before showing main content for smooth fade
+      const contentTimer = setTimeout(() => {
+        setShowContent(true);
+      }, 300); // Adjust as needed for smoother fade
+
+      return () => clearTimeout(contentTimer);
+    }, 2500); // Reduced from 4000ms for better perceived speed
+
     return () => clearTimeout(loadingTimer);
   }, []);
 
-  if (isLoading) {
-    return <Loader />;
-  }
-
   return (
-    <div className={`cursor-none overflow-x-hidden transition-opacity duration-1000 ease-in-out ${fadeIn ? 'opacity-100' : 'opacity-0'}`}>
-      <CustomCursor />
-      <Routes>
-        <Route path='/' element={<Homepage />} />
-        <Route path='/team' element={<Team />} />
-        <Route path='/auth' element={<FadeInWrapper><AuthPage /></FadeInWrapper>} />
-        <Route path='/space' element={<Space />} />
-        <Route path='/chat' element={<Chat />} />
-        <Route path='/about' element={<About />} />
-        <Route path='/terms' element={<TermsPolicies />} />
-        <Route path='/settings' element={<ProfileSettings />} />
+    <ReactLenis root>
+      {isLoading && (
+        <div className="fixed inset-0 z-50 bg-black">
+          <Loader />
+        </div>
+      )}
 
-        {/* 404 Page — always keep at the bottom */}
-        <Route path='*' element={<ErrorPage />} />
-      </Routes>
-    </div>
+      <div
+        className={`transition-opacity duration-1000 ease-in-out ${
+          showContent ? 'opacity-100' : 'opacity-0'
+        } cursor-none overflow-x-hidden`}
+      >
+        <CustomCursor />
+        <Routes>
+          <Route path='/' element={<Homepage />} />
+          <Route path='/team' element={<Team />} />
+          <Route path='/auth' element={<FadeInWrapper><AuthPage /></FadeInWrapper>} />
+          <Route path='/space' element={<Space />} />
+          <Route path='/chat' element={<Chat />} />
+          <Route path='/about' element={<About />} />
+          <Route path='/terms' element={<TermsPolicies />} />
+          <Route path='/settings' element={<ProfileSettings />} />
+          <Route path='*' element={<ErrorPage />} />
+        </Routes>
+      </div>
+    </ReactLenis>
   );
-}
+};
 
 export default App;
