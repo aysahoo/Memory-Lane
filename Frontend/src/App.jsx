@@ -11,6 +11,7 @@ import FadeInWrapper from './components/FadeIn'
 import About from './pages/About'
 import TermsPolicies from './pages/TermsPolicies'
 import ErrorPage from './pages/ErrorPage' // ⬅️ Import the 404 Page
+import ProfileSettings from './pages/ProfileSettings'
 
 const App = () => {
   const [isLoading, setIsLoading] = useState(true);
@@ -42,6 +43,7 @@ const App = () => {
         <Route path='/chat' element={<Chat />} />
         <Route path='/about' element={<About />} />
         <Route path='/terms' element={<TermsPolicies />} />
+        <Route path='/settings' element={<ProfileSettings />} />
 
         {/* 404 Page — always keep at the bottom */}
         <Route path='*' element={<ErrorPage />} />

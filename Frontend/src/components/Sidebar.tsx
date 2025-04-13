@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Plus, Search, Settings, Trash2 } from 'lucide-react';
 import { Conversation } from './CommonTypes';
+import { Link } from 'react-router-dom';
 
 interface SidebarProps {
   sidebarOpen: boolean;
@@ -144,9 +145,11 @@ const Sidebar: React.FC<SidebarProps> = ({
               </div>
             )}
             {(sidebarOpen || window.innerWidth < 768) && (
+              <Link to="/settings" className='ml-auto'>
               <button className="ml-auto text-gray-400 hover:text-[#459DDC] transition-colors">
                 <Settings className="h-5 w-5" />
               </button>
+              </Link>
             )}
           </div>
         </div>
