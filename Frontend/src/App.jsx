@@ -19,23 +19,28 @@ const App = () => {
   const [showContent, setShowContent] = useState(false);
 
   useEffect(() => {
-    // Simulate dynamic asset readiness/loading
     const loadingTimer = setTimeout(() => {
       setIsLoading(false);
-
-      // Small delay before showing main content for smooth fade
       const contentTimer = setTimeout(() => {
         setShowContent(true);
-      }, 300); // Adjust as needed for smoother fade
-
+      }, 300);
       return () => clearTimeout(contentTimer);
-    }, 2500); // Reduced from 4000ms for better perceived speed
+    }, 2500);
 
     return () => clearTimeout(loadingTimer);
   }, []);
 
   return (
-    <ReactLenis root>
+    <ReactLenis
+      root
+      options={{
+        smooth: true,
+        smoothTouch: true,
+        touchMultiplier: 1.5,
+        gestureOrientation: 'vertical',
+        syncTouch: true,
+      }}
+    >
       {isLoading && (
         <div className="fixed inset-0 z-50 bg-black">
           <Loader />
@@ -49,15 +54,15 @@ const App = () => {
       >
         <CustomCursor />
         <Routes>
-          <Route path='/' element={<Homepage />} />
-          <Route path='/team' element={<Team />} />
-          <Route path='/auth' element={<FadeInWrapper><AuthPage /></FadeInWrapper>} />
-          <Route path='/space' element={<Space />} />
-          <Route path='/chat' element={<Chat />} />
-          <Route path='/about' element={<About />} />
-          <Route path='/terms' element={<TermsPolicies />} />
-          <Route path='/settings' element={<ProfileSettings />} />
-          <Route path='*' element={<ErrorPage />} />
+          <Route path="/" element={<Homepage />} />
+          <Route path="/team" element={<Team />} />
+          <Route path="/auth" element={<FadeInWrapper><AuthPage /></FadeInWrapper>} />
+          <Route path="/space" element={<Space />} />
+          <Route path="/chat" element={<Chat />} />
+          <Route path="/about" element={<About />} />
+          <Route path="/terms" element={<TermsPolicies />} />
+          <Route path="/settings" element={<ProfileSettings />} />
+          <Route path="*" element={<ErrorPage />} />
         </Routes>
       </div>
     </ReactLenis>
