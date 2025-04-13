@@ -15,7 +15,6 @@ const Team = () => {
       name: "Ayush Sahoo",
       role: "Developer & Designer",
       img: assets.ayush,
-      lowResImage: assets.ayush_m,
       socialLinks: {
         github: 'https://github.com/aysahoo',
         linkedin: 'https://www.linkedin.com/in/ayush-sahoo04/'
@@ -25,7 +24,6 @@ const Team = () => {
       name: "Ankit Kumar",
       role: "Backend Developer",
       img: assets.ankit,
-      lowResImage: assets.ankit_m,
       socialLinks: {
         github: 'https://github.com/Ankit-Kumar20',
         linkedin: 'https://www.linkedin.com/in/ankit-kumar-017011204/'
@@ -35,7 +33,6 @@ const Team = () => {
       name: "Adarsha Natia",
       role: "Developer & Designer",
       img: assets.adarsh,
-      lowResImage: assets.adarsh_m,
       socialLinks: {
         github: 'https://github.com/Adarsha2004',
         linkedin: 'https://www.linkedin.com/in/adarsha-natia-9921092b4/'
@@ -85,7 +82,6 @@ const Team = () => {
               showMobileWarning={false}
               showTooltip={false}
               displayOverlayContent={false}
-              lowResImage={member.lowResImage}
             />
             <div className="mt-2">
               <h4 className="text-lg font-semibold">{member.name}</h4>
