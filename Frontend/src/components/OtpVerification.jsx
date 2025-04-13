@@ -2,14 +2,14 @@ import React, { useRef, useState } from "react";
 
 export default function OTPVerification({ onVerify }) {
   const inputRefs = useRef([]);
-  const [otp, setOtp] = useState(["", "", "", ""]);
+  const [otp, setOtp] = useState(["", "", "", "", "", ""]);
 
   const handleChange = (index, value) => {
     if (!/^\d?$/.test(value)) return;
     const newOtp = [...otp];
     newOtp[index] = value;
     setOtp(newOtp);
-    if (value && index < 3) {
+    if (value && index < 5) {
       inputRefs.current[index + 1]?.focus();
     }
   };
@@ -23,7 +23,7 @@ export default function OTPVerification({ onVerify }) {
   const handleSubmit = (e) => {
     e.preventDefault();
     const code = otp.join("");
-    if (code.length === 4) {
+    if (code.length === 6) {
       onVerify(code);
     }
   };
@@ -40,7 +40,7 @@ export default function OTPVerification({ onVerify }) {
           Verify OTP
         </h2>
         <p className="text-sm text-neutral-300 mb-6">
-          Enter the 4-digit code sent to your email
+          Enter the 6-digit code sent to your email
         </p>
 
         <div className="flex justify-center gap-4 mb-8">

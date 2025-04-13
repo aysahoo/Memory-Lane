@@ -6,7 +6,6 @@ import AuthPage from './pages/AuthPage';
 import Space from './components/Space';
 import Chat from './pages/Chat';
 import Loader from './pages/Loader';
-import CustomCursor from './components/CustomCursor';
 import FadeInWrapper from './components/FadeIn';
 import About from './pages/About';
 import TermsPolicies from './pages/TermsPolicies';
@@ -51,9 +50,8 @@ const App = () => {
       <div
         className={`transition-opacity duration-1000 ease-in-out ${
           showContent ? 'opacity-100' : 'opacity-0'
-        } cursor-none overflow-x-hidden`}
+        } overflow-x-hidden`}
       >
-        <CustomCursor />
         <Routes>
           <Route path="/" element={<Homepage />} />
           <Route path="/team" element={<Team />} />
