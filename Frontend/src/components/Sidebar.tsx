@@ -11,6 +11,7 @@ interface SidebarProps {
   setActiveConversation: (id: string) => void;
   toggleSidebar: () => void;
   handleDeleteConversation: (id: string) => void; // Added
+  onOpenSettings: () => void; // 👈 Add this line
 }
 
 const Sidebar: React.FC<SidebarProps> = ({
@@ -20,7 +21,8 @@ const Sidebar: React.FC<SidebarProps> = ({
   createNewConversation,
   setActiveConversation,
   toggleSidebar,
-  handleDeleteConversation
+  handleDeleteConversation,
+  onOpenSettings,
 }) => {
   const [touchStart, setTouchStart] = useState<number | null>(null);
   const [touchEnd, setTouchEnd] = useState<number | null>(null);
@@ -40,6 +42,11 @@ const Sidebar: React.FC<SidebarProps> = ({
     else if (distance < -50 && !sidebarOpen) toggleSidebar();
     setTouchStart(null);
     setTouchEnd(null);
+  };
+
+  const handleSettingsClick = () => {
+    toggleSidebar(); // Close the sidebar when settings is clicked
+    onOpenSettings(); // Open settings modal
   };
 
   return (
@@ -102,37 +109,36 @@ const Sidebar: React.FC<SidebarProps> = ({
           </div>
         )}
 
-      <div className={`flex-1 overflow-y-auto ${!sidebarOpen && 'md:hidden'}`}>
-        <div className="p-3">
-          <h3 className="text-sm text-[#459DDC] uppercase tracking-wider mb-2">History</h3>
-          <ul className="space-y-1">
-            {conversations.map(conv => (
-              <li key={conv.id} className="flex items-center justify-between group relative">
-                <button 
-                  className={`flex-1 text-left p-2 rounded-lg ${
-                    activeConversation === conv.id
-                      ? 'bg-gray-800 text-[#459DDC]'
-                      : 'hover:bg-gray-800 text-gray-300 hover:text-[#459DDC]'
-                  }`}
-                  onClick={() => setActiveConversation(conv.id)}
-                >
-                  <div className="font-medium truncate">{conv.title}</div>
-                  <div className="text-xs font-outfit text-gray-400">{conv.date}</div>
-                </button>
-                {/* Delete button */}
-                <button
-                  type="button"
-                  onClick={() => handleDeleteConversation(conv.id)}
-                  className="absolute right-0 top-1/2 transform -translate-y-1/2 p-3 text-gray-500 hover:text-red-500 opacity-0 group-hover:opacity-100 transition-opacity duration-300"
-                >
-                  <Trash2 className="w-4 h-4" />
-                </button>
-              </li>
-            ))}
-          </ul>
+        <div className={`flex-1 overflow-y-auto ${!sidebarOpen && 'md:hidden'}`}>
+          <div className="p-3">
+            <h3 className="text-sm text-[#459DDC] uppercase tracking-wider mb-2">History</h3>
+            <ul className="space-y-1">
+              {conversations.map(conv => (
+                <li key={conv.id} className="flex items-center justify-between group relative">
+                  <button 
+                    className={`flex-1 text-left p-2 rounded-lg ${
+                      activeConversation === conv.id
+                        ? 'bg-gray-800 text-[#459DDC]'
+                        : 'hover:bg-gray-800 text-gray-300 hover:text-[#459DDC]'
+                    }`}
+                    onClick={() => setActiveConversation(conv.id)}
+                  >
+                    <div className="font-medium truncate">{conv.title}</div>
+                    <div className="text-xs font-outfit text-gray-400">{conv.date}</div>
+                  </button>
+                  {/* Delete button */}
+                  <button
+                    type="button"
+                    onClick={() => handleDeleteConversation(conv.id)}
+                    className="absolute right-0 top-1/2 transform -translate-y-1/2 p-3 text-gray-500 hover:text-red-500 opacity-0 group-hover:opacity-100 transition-opacity duration-300"
+                  >
+                    <Trash2 className="w-4 h-4" />
+                  </button>
+                </li>
+              ))}
+            </ul>
+          </div>
         </div>
-      </div>
-
 
         <div className="mt-auto border-t border-gray-800/40">
           <div className={`p-3 flex items-center ${!sidebarOpen && 'md:justify-center'}`}>
@@ -145,11 +151,12 @@ const Sidebar: React.FC<SidebarProps> = ({
               </div>
             )}
             {(sidebarOpen || window.innerWidth < 768) && (
-              <Link to="/settings" className='ml-auto'>
-              <button className="ml-auto text-gray-400 hover:text-[#459DDC] transition-colors">
+              <button 
+                onClick={handleSettingsClick} // Modified to toggle sidebar and open settings
+                className="ml-auto text-gray-400 hover:text-[#459DDC] transition-colors"
+              >
                 <Settings className="h-5 w-5" />
               </button>
-              </Link>
             )}
           </div>
         </div>

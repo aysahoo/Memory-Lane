@@ -6,6 +6,7 @@ import ChatMessages from '../components/ChatMessages';
 import ChatInput from '../components/ChatInput';
 import WelcomeScreen from '../components/WelcomeScreen';
 import Space from '../components/Space';
+import ProfileSettings from '../pages/ProfileSettings'; // Modal Import
 
 const welcomeWords = [
   { text: "Upload", className: "text-sm sm:text-sm md:text-base lg:text-lg" },
@@ -17,12 +18,6 @@ const welcomeWords = [
 ];
 
 const Chat: React.FC = () => {
-  const [showSpace, setShowSpace] = useState(false);
-
-  const openSpace = () => setShowSpace(true);
-  const closeSpace = () => setShowSpace(false);
-
-
   const [message, setMessage] = useState<string>('');
   const [messages, setMessages] = useState<ChatMessage[]>([]);
   const [conversations, setConversations] = useState<Conversation[]>([
@@ -33,30 +28,20 @@ const Chat: React.FC = () => {
   const [activeConversation, setActiveConversation] = useState<string>('1');
   const [sidebarOpen, setSidebarOpen] = useState<boolean>(false);
   const [chatAttachment, setChatAttachment] = useState<File | null>(null);
+  const [showSpace, setShowSpace] = useState(false);
+  const [showSettings, setShowSettings] = useState(false); // ⬅️ Settings Modal toggle
   const messagesEndRef = useRef<HTMLDivElement>(null);
 
   const handleDeleteConversation = (id: string) => {
     setConversations(prev => prev.filter(conv => conv.id !== id));
   };
-  
 
-  // Set sidebar state based on screen size
   useEffect(() => {
     const handleResize = () => {
-      if (window.innerWidth >= 768) {
-        setSidebarOpen(true);
-      } else {
-        setSidebarOpen(false);
-      }
+      setSidebarOpen(window.innerWidth >= 768);
     };
-
-    // Set initial state
     handleResize();
-
-    // Add event listener
     window.addEventListener('resize', handleResize);
-
-    // Cleanup
     return () => window.removeEventListener('resize', handleResize);
   }, []);
 
@@ -75,18 +60,16 @@ const Chat: React.FC = () => {
       const newMessage: ChatMessage = {
         text: message || (chatAttachment ? `[Audio attached: ${chatAttachment.name}]` : ""),
         role: 'user',
+        audioFile: chatAttachment
+          ? {
+              name: chatAttachment.name,
+              url: URL.createObjectURL(chatAttachment),
+            }
+          : undefined,
       };
 
-      if (chatAttachment) {
-        newMessage.audioFile = {
-          name: chatAttachment.name,
-          url: URL.createObjectURL(chatAttachment)
-        };
-      }
-
       setMessages((prevMessages) => [...prevMessages, newMessage]);
-      
-      // Add an example response message
+
       setTimeout(() => {
         const responseMessage: ChatMessage = {
           text: "I received your message!",
@@ -94,7 +77,7 @@ const Chat: React.FC = () => {
         };
         setMessages(prevMessages => [...prevMessages, responseMessage]);
       }, 1000);
-      
+
       setMessage('');
       setChatAttachment(null);
     }
@@ -126,8 +109,9 @@ const Chat: React.FC = () => {
         setActiveConversation={setActiveConversation}
         toggleSidebar={toggleSidebar}
         handleDeleteConversation={handleDeleteConversation}
+        onOpenSettings={() => setShowSettings(true)} // ⬅️ Open settings
       />
-      
+
       <main className="relative flex flex-1 flex-col transition-all overflow-y-hidden duration-300 bg-gradient-to-b from-gray-900/30 to-black/60 backdrop-blur-sm">
         <div className="flex justify-between items-center">
           <ChatHeader 
@@ -135,23 +119,21 @@ const Chat: React.FC = () => {
             conversations={conversations} 
             toggleSidebar={toggleSidebar}
             sidebarOpen={sidebarOpen}
-            onOpenSpace={openSpace}
+            onOpenSpace={() => setShowSpace(true)}
           />
         </div>
-        
+
         <div className={`flex-1 ${messages.length > 0 ? 'overflow-y-auto scrollbar-thin flex justify-center' : 'overflow-hidden flex items-center justify-center'}`}>
-        <div className="w-full max-w-4xl px-4">
-          {messages.length === 0 ? (
-            <WelcomeScreen 
-              welcomeWords={welcomeWords}
-            />
-          ) : (
-            <ChatMessages 
-              messages={messages} 
-              messagesEndRef={messagesEndRef}
-            />
-          )}
-        </div>
+          <div className="w-full max-w-4xl px-4">
+            {messages.length === 0 ? (
+              <WelcomeScreen welcomeWords={welcomeWords} />
+            ) : (
+              <ChatMessages 
+                messages={messages} 
+                messagesEndRef={messagesEndRef}
+              />
+            )}
+          </div>
         </div>
 
         <ChatInput 
@@ -161,7 +143,9 @@ const Chat: React.FC = () => {
           chatAttachment={chatAttachment}
           setChatAttachment={setChatAttachment}
         />
-        {showSpace && <Space onClose={closeSpace} />}
+
+        {showSpace && <Space onClose={() => setShowSpace(false)} />}
+        {showSettings && <ProfileSettings onClose={() => setShowSettings(false)} isOpen={true} />}
 
       </main>
     </div>

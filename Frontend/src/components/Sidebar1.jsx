@@ -15,7 +15,7 @@ export default function Sidebar1({ activeTab, setActiveTab }) {
         <button
           key={tab.id}
           onClick={() => setActiveTab(tab.id)}
-          className={`flex items-center space-x-3 px-1 py-2 md:px-3 rounded-md text-lg transition-colors w-full ${
+          className={`flex items-center space-x-3 px-4 py-2 md:px-3 rounded-md text-lg transition-colors w-full ${
             activeTab === tab.id
               ? 'bg-zinc-800 text-white'
               : 'text-zinc-400 hover:text-white'
