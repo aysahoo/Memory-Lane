@@ -1,7 +1,6 @@
 import { useRef, useState } from "react";
 import { motion, useMotionValue, useSpring } from "framer-motion";
 
-
 const springValues = {
   damping: 30,
   stiffness: 100,
@@ -10,6 +9,7 @@ const springValues = {
 
 export default function TiltedCard({
   imageSrc,
+  lowResImage = "", // NEW: blurred image placeholder
   altText = "Tilted card image",
   captionText = "",
   containerHeight = "300px",
@@ -37,6 +37,7 @@ export default function TiltedCard({
   });
 
   const [lastY, setLastY] = useState(0);
+  const [loaded, setLoaded] = useState(false); // NEW
 
   function handleMouse(e) {
     if (!ref.current) return;
@@ -100,15 +101,31 @@ export default function TiltedCard({
           scale,
         }}
       >
+      {/* Low-res blurred placeholder */}
+      {lowResImage && (
         <motion.img
-          src={imageSrc}
-          alt={altText}
-          className="absolute top-0 left-0 object-cover rounded-[15px] will-change-transform [transform:translateZ(0)]"
+          src={lowResImage}
+          alt={`${altText} preview`}
+          className="absolute top-0 left-0 object-cover scale-95 rounded-[15px] blur-sm"
           style={{
             width: imageWidth,
             height: imageHeight,
           }}
         />
+      )}
+
+      {/* Full-resolution image */}
+      <motion.img
+        src={imageSrc}
+        alt={altText}
+        onLoad={() => setLoaded(true)}
+        className="absolute top-0 left-0 object-cover rounded-[15px] will-change-transform transition-opacity duration-700 ease-in-out"
+        style={{
+          width: imageWidth,
+          height: imageHeight,
+          opacity: loaded ? 1 : 0,
+        }}
+      />
 
         {displayOverlayContent && overlayContent && (
           <motion.div

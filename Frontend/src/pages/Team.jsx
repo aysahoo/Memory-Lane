@@ -82,6 +82,7 @@ const Team = () => {
               showMobileWarning={false}
               showTooltip={false}
               displayOverlayContent={false}
+              lowResImage={member.img}
             />
             <div className="mt-2">
               <h4 className="text-lg font-semibold">{member.name}</h4>
