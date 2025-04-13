@@ -44,33 +44,33 @@ const ChatInput: React.FC<ChatInputProps> = ({
         <div className="flex flex-col w-full bg-gray-800/30 backdrop-blur-sm rounded-2xl shadow-md overflow-hidden">
 
         {chatAttachment && (
-  <div className="px-3 pt-3">
-    <div className="flex items-center bg-gray-800/60 py-1.5 px-3 rounded-xl w-fit max-w-full">
-      <div className="w-7 h-7 rounded bg-gray-700 flex items-center justify-center mr-2">
-        <span className="text-[10px] text-gray-300 uppercase">
-          {chatAttachment.name.split('.').pop() || 'mp3'}
-        </span>
-      </div>
-      <div className="flex-1 min-w-0">
-        <span
-          className="text-white text-xs truncate max-w-[150px] md:max-w-xs font-medium block"
-          title={chatAttachment.name}
-        >
-          {chatAttachment.name}
-        </span>
-        <div className="text-[10px] text-gray-400">
-          {(chatAttachment.size / 1024).toFixed(0)} KB
+        <div className="px-3 font-outfit pt-3">
+          <div className="flex items-center bg-gray-800/60 py-1.5 px-3 rounded-xl w-fit max-w-full">
+            <div className="w-7 h-7 rounded bg-gray-700 flex items-center justify-center mr-2">
+              <span className="text-[10px] text-gray-300 uppercase">
+                {chatAttachment.name.split('.').pop() || 'mp3'}
+              </span>
+            </div>
+            <div className="flex-1 min-w-0">
+              <span
+                className="text-white text-xs truncate max-w-[150px] md:max-w-xs font-medium block"
+                title={chatAttachment.name}
+              >
+                {chatAttachment.name}
+              </span>
+              <div className="text-[10px] text-gray-400">
+                {(chatAttachment.size / 1024).toFixed(0)} KB
+              </div>
+            </div>
+            <button
+              onClick={removeChatAttachment}
+              className="ml-2 text-gray-400 hover:text-gray-200 transition-colors"
+            >
+              <XCircle className="h-4 w-4" />
+            </button>
+          </div>
         </div>
-      </div>
-      <button
-        onClick={removeChatAttachment}
-        className="ml-2 text-gray-400 hover:text-gray-200 transition-colors"
-      >
-        <XCircle className="h-4 w-4" />
-      </button>
-    </div>
-  </div>
-)}
+      )}
 
 
           <div className="flex items-center px-3 py-2 md:px-4 md:py-3">

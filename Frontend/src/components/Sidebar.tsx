@@ -116,7 +116,7 @@ const Sidebar: React.FC<SidebarProps> = ({
                   onClick={() => setActiveConversation(conv.id)}
                 >
                   <div className="font-medium truncate">{conv.title}</div>
-                  <div className="text-xs text-gray-400">{conv.date}</div>
+                  <div className="text-xs font-outfit text-gray-400">{conv.date}</div>
                 </button>
                 {/* Delete button */}
                 <button
