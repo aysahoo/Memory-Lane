@@ -58,7 +58,7 @@ const Sidebar: React.FC<SidebarProps> = ({
         onTouchMove={handleTouchMove}
         onTouchEnd={handleTouchEnd}
       >
-        <div className={`p-3 border-b border-gray-800/40 flex items-center ${!sidebarOpen && 'md:justify-center'}`}>
+        <div className={`p-[12px] md:p-[18px] border-b border-gray-800/40 flex items-center ${!sidebarOpen && 'md:justify-center'}`}>
           <h2 className={`text-lg font-medium ${!sidebarOpen && 'md:hidden'} animated-gradient-text`}>Memory Lane</h2>
         </div>
 
