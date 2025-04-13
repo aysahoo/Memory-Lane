@@ -106,7 +106,7 @@ export default function TiltedCard({
         <motion.img
           src={lowResImage}
           alt={`${altText} preview`}
-          className="absolute top-0 left-0 object-cover scale-95 rounded-[15px] blur-sm"
+          className="absolute top-0 left-0 object-cover scale-100 rounded-[15px]"
           style={{
             width: imageWidth,
             height: imageHeight,
