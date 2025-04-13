@@ -33,9 +33,9 @@ export default function ProfileSettings({ isOpen, onClose }) {
   };
 
   return (
-    <div className="fixed inset-0 z-50 bg-black/50 backdrop-blur-sm flex items-center justify-center p-4">
+    <div className="fixed inset-0 z-50 bg-black/80 backdrop-blur-sm flex items-center justify-center p-4">
       {/* Modal Container */}
-      <div className="relative w-full max-w-6xl h-[90vh] overflow-hidden flex flex-col rounded-2xl shadow-2xl
+      <div className="relative w-full max-w-6xl h-[85vh] overflow-hidden flex flex-col rounded-2xl shadow-2xl
         bg-zinc-800/40 backdrop-blur-xl border border-white/10 text-white">
         
         {/* Header */}

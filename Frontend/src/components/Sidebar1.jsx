@@ -10,7 +10,7 @@ export default function Sidebar1({ activeTab, setActiveTab }) {
   ];
 
   return (
-    <div className=" md:w-64 bg-zinc-900 h-screen flex flex-col items-center md:items-start space-y-4 md:space-y-6">
+    <div className=" md:w-64 bg-black/50 h-screen flex flex-col items-center md:items-start space-y-4 pt-4 md:space-y-6">
       {tabs.map((tab) => (
         <button
           key={tab.id}

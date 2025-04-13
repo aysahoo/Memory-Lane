@@ -8,7 +8,7 @@ export default function UsageStats() {
   ];
 
   return (
-    <div className="p-4 sm:p-6 bg-zinc-900 border border-zinc-800 rounded-md mb-6">
+    <div className="p-4 sm:p-4 bg-zinc-900 border border-zinc-800 rounded-md mb-6">
       <h2 className="text-lg font-medium mb-2">Usage Stats</h2>
       <p className="text-sm text-zinc-300 mb-4">Here is an overview of your usage statistics:</p>
       

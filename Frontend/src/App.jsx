@@ -13,6 +13,7 @@ import TermsPolicies from './pages/TermsPolicies';
 import ErrorPage from './pages/ErrorPage';
 import ProfileSettings from './pages/ProfileSettings';
 import { ReactLenis } from 'lenis/react';
+import Test from './pages/Test';
 
 const App = () => {
   const [isLoading, setIsLoading] = useState(true);
@@ -62,6 +63,7 @@ const App = () => {
           <Route path="/about" element={<About />} />
           <Route path="/terms" element={<TermsPolicies />} />
           <Route path="/settings" element={<ProfileSettings />} />
+          <Route path="/test" element={<Test />} />
           <Route path="*" element={<ErrorPage />} />
         </Routes>
       </div>
