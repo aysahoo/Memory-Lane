@@ -139,7 +139,8 @@ const Chat: React.FC = () => {
           />
         </div>
         
-        <div className={`flex-1 ${messages.length > 0 ? 'overflow-y-auto scrollbar-thin' : 'overflow-hidden'}`}>
+        <div className={`flex-1 ${messages.length > 0 ? 'overflow-y-auto scrollbar-thin flex justify-center' : 'overflow-hidden flex items-center justify-center'}`}>
+        <div className="w-full max-w-4xl px-4">
           {messages.length === 0 ? (
             <WelcomeScreen 
               welcomeWords={welcomeWords}
@@ -151,7 +152,8 @@ const Chat: React.FC = () => {
             />
           )}
         </div>
-        
+        </div>
+
         <ChatInput 
           message={message}
           setMessage={setMessage}

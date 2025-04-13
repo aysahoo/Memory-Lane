@@ -101,35 +101,37 @@ const Sidebar: React.FC<SidebarProps> = ({
           </div>
         )}
 
-        <div className={`flex-1 overflow-y-auto ${!sidebarOpen && 'md:hidden'}`}>
-          <div className="p-3">
-            <h3 className="text-sm text-[#459DDC] uppercase tracking-wider mb-2">History</h3>
-            <ul className="space-y-1">
-              {conversations.map(conv => (
-                <li key={conv.id} className="flex items-center justify-between group">
-                  <button 
-                    className={`flex-1 text-left p-2 rounded-lg ${
-                      activeConversation === conv.id
-                        ? 'bg-gray-800 text-[#459DDC]'
-                        : 'hover:bg-gray-800 text-gray-300 hover:text-[#459DDC]'
-                    }`}
-                    onClick={() => setActiveConversation(conv.id)}
-                  >
-                    <div className="font-medium truncate">{conv.title}</div>
-                    <div className="text-xs text-gray-400">{conv.date}</div>
-                  </button>
-                  <button
-                    type="button" 
-                    onClick={() => handleDeleteConversation(conv.id)}
-                    className="ml-2 p-1 text-gray-500 hover:text-red-500 invisible group-hover:visible"
-                  >
-                    <Trash2 className="w-4 h-4" />
-                  </button>
-                </li>
-              ))}
-            </ul>
-          </div>
+      <div className={`flex-1 overflow-y-auto ${!sidebarOpen && 'md:hidden'}`}>
+        <div className="p-3">
+          <h3 className="text-sm text-[#459DDC] uppercase tracking-wider mb-2">History</h3>
+          <ul className="space-y-1">
+            {conversations.map(conv => (
+              <li key={conv.id} className="flex items-center justify-between group relative">
+                <button 
+                  className={`flex-1 text-left p-2 rounded-lg ${
+                    activeConversation === conv.id
+                      ? 'bg-gray-800 text-[#459DDC]'
+                      : 'hover:bg-gray-800 text-gray-300 hover:text-[#459DDC]'
+                  }`}
+                  onClick={() => setActiveConversation(conv.id)}
+                >
+                  <div className="font-medium truncate">{conv.title}</div>
+                  <div className="text-xs text-gray-400">{conv.date}</div>
+                </button>
+                {/* Delete button */}
+                <button
+                  type="button"
+                  onClick={() => handleDeleteConversation(conv.id)}
+                  className="absolute right-0 top-1/2 transform -translate-y-1/2 p-3 text-gray-500 hover:text-red-500 opacity-0 group-hover:opacity-100 transition-opacity duration-300"
+                >
+                  <Trash2 className="w-4 h-4" />
+                </button>
+              </li>
+            ))}
+          </ul>
         </div>
+      </div>
+
 
         <div className="mt-auto border-t border-gray-800/40">
           <div className={`p-3 flex items-center ${!sidebarOpen && 'md:justify-center'}`}>
