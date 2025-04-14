@@ -32,7 +32,7 @@ export default function AuthPage() {
   const [success, setSuccess] = useState("");
   const [showOTP, setShowOTP] = useState(false);
 
-  //Loading the TEam images
+    //Loading the TEam images
     useEffect(() => {
       // const img = new Image()
       const img1 = new Image()
@@ -43,8 +43,8 @@ export default function AuthPage() {
       img2.src = assets.ankit
       img3.src = assets.ayush
     }, [])
-  
 
+    
   // Validation
   const isValidEmail = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
   const isValidPassword = password.length >= 8;
@@ -53,6 +53,8 @@ export default function AuthPage() {
     ? isValidEmail && isValidPassword
     : isValidEmail && isValidPassword && name.length > 0 && isConfirmMatch;
 
+
+    
   // Handle form submit
   const handleSubmit = async (e) => {
     e.preventDefault();
