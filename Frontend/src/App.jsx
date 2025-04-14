@@ -12,6 +12,7 @@ import TermsPolicies from './pages/TermsPolicies';
 import ErrorPage from './pages/ErrorPage';
 import ProfileSettings from './pages/ProfileSettings';
 import { ReactLenis } from 'lenis/react';
+import { SpeedInsights } from "@vercel/speed-insights/react"
 
 
 const App = () => {
@@ -63,6 +64,7 @@ const App = () => {
           <Route path="/settings" element={<ProfileSettings />} />
           <Route path="*" element={<ErrorPage />} />
         </Routes>
+      <SpeedInsights/>
       </div>
     </ReactLenis>
   );
