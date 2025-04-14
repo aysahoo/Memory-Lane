@@ -31,7 +31,7 @@ export default function OTPVerification({ onVerify }) {
   const isOtpComplete = otp.every((digit) => digit !== "");
 
   return (
-    <div className="w-full h-screen flex items-center justify-center bg-black px-4">
+    <div className="w-full h-screen flex items-center justify-center bg-black">
       <form
         onSubmit={handleSubmit}
         className="w-full max-w-sm text-white text-center"
@@ -54,7 +54,7 @@ export default function OTPVerification({ onVerify }) {
               value={digit}
               onChange={(e) => handleChange(index, e.target.value)}
               onKeyDown={(e) => handleKeyDown(index, e)}
-              className="w-14 h-14 text-center text-2xl rounded-xl border border-white/20 bg-white/10 backdrop-blur-md text-white focus:outline-none focus:ring-2 focus:ring-[#459ddc] transition-all"
+              className="w-10 h-10 text-center text-xl font-outfit rounded-xl border border-white/20 bg-white/10 backdrop-blur-md text-white focus:outline-none focus:ring-2 focus:ring-[#459ddc] transition-all"
             />
           ))}
         </div>
