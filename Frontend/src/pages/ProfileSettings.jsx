@@ -1,7 +1,6 @@
 import { useState } from 'react';
 import Sidebar1 from '../components/Sidebar1';
 import ProfileTab from '../components/ProfileTab';
-import AppearanceTab from '../components/Appearance';
 import AccountTab from '../components/AccountTab';
 import BillingTab from '../components/BillingTab';
 import { X } from 'lucide-react';
@@ -21,8 +20,6 @@ export default function ProfileSettings({ isOpen, onClose }) {
     switch (activeTab) {
       case 'profile':
         return <ProfileTab saveChanges={saveChanges} />;
-      case 'appearance':
-        return <AppearanceTab />;
       case 'account':
         return <AccountTab />;
       case 'billing':
@@ -33,10 +30,10 @@ export default function ProfileSettings({ isOpen, onClose }) {
   };
 
   return (
-    <div className="fixed inset-0 z-50 bg-black/80 backdrop-blur-sm flex items-center justify-center p-4">
+    <div className="fixed inset-0 z-50 bg-black/80 backdrop-blur-sm flex items-center justify-center p-4 overflow-y-auto">
       {/* Modal Container */}
-      <div className="relative w-full max-w-6xl h-[85vh] overflow-hidden flex flex-col rounded-2xl shadow-2xl
-        bg-zinc-800/40 backdrop-blur-xl border border-white/10 text-white">
+      <div className="relative w-full max-w-6xl h-[85vh] flex flex-col rounded-2xl shadow-2xl
+        bg-zinc-800/40 backdrop-blur-xl border border-white/10 text-white overflow-hidden">
         
         {/* Header */}
         <div className="flex items-center justify-between px-6 py-4 border-b border-white/10">

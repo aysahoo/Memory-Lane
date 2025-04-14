@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import { Plus, Search, Settings, Trash2 } from 'lucide-react';
 import { Conversation } from './CommonTypes';
-import { Link } from 'react-router-dom';
 
 interface SidebarProps {
   sidebarOpen: boolean;

@@ -9,8 +9,6 @@ export default function ProfileTab({ saveChanges }) {
   // State for form fields
   const [fullName, setFullName] = useState('Ayush');
   const [displayName, setDisplayName] = useState('Ayush');
-  const [preferences, setPreferences] = useState('');
-  const [artifactsEnabled, setArtifactsEnabled] = useState(true);
   const [profilePhoto, setProfilePhoto] = useState(null);
   
   // Handler for sidebar actions

@@ -96,8 +96,17 @@ const Chat: React.FC = () => {
   };
 
   const toggleSidebar = () => {
-    setSidebarOpen(!sidebarOpen);
+    setSidebarOpen((prev) => {
+      if (!prev) setShowSettings(false); // close settings if opening sidebar
+      return !prev;
+    });
   };
+  const openSettings = () => {
+    setShowSettings(true);
+    setSidebarOpen(false); // close sidebar if opening settings
+  };
+  
+  
 
   return (
     <div className="flex h-dvh w-full overflow-hidden bg-gray-900 text-white">
@@ -109,7 +118,7 @@ const Chat: React.FC = () => {
         setActiveConversation={setActiveConversation}
         toggleSidebar={toggleSidebar}
         handleDeleteConversation={handleDeleteConversation}
-        onOpenSettings={() => setShowSettings(true)} // ⬅️ Open settings
+        onOpenSettings={openSettings} // ⬅️ Open settings
       />
 
       <main className="relative flex flex-1 flex-col transition-all overflow-y-hidden duration-300 bg-gradient-to-b from-gray-900/30 to-black/60 backdrop-blur-sm">
