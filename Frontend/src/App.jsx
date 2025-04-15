@@ -30,15 +30,19 @@ const App = () => {
     return () => clearTimeout(loadingTimer);
   }, []);
 
+  const isIOS = typeof window !== 'undefined' && /iPad|iPhone|iPod/.test(navigator.userAgent);
+
+
   return (
     <ReactLenis
       root
       options={{
         smooth: true,
         smoothTouch: true,
-        touchMultiplier: 1.5,
         gestureOrientation: 'vertical',
-        syncTouch: true,
+        touchMultiplier: 0.8,
+        syncTouch:!isIOS,
+  
       }}
     >
       {isLoading && (
