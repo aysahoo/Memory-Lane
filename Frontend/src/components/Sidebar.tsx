@@ -59,7 +59,6 @@ const Sidebar: React.FC<SidebarProps> = ({
 
       <div 
         className={`fixed md:static h-full bg-black bg-opacity-10 backdrop-blur-sm text-white flex flex-col shadow-xl rounded-r-xl border-r border-gray-800/40
-          transition-all duration-300 ease-in-out transform z-20
           ${sidebarOpen ? 'translate-x-0 w-64' : '-translate-x-full md:translate-x-0 md:w-20'}`}
         onTouchStart={handleTouchStart}
         onTouchMove={handleTouchMove}
